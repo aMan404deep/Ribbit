@@ -48,7 +48,7 @@ export function Hero() {
                   {getDownloadText()}
                 </a>
                 <div className="flex flex-col text-[10px] font-mono text-muted justify-center h-full pt-1">
-                  <span>v0.1.29 · Stable</span>
+                  <span>v0.1.38 · Stable</span>
                 </div>
               </div>
               <div className="flex flex-wrap gap-4 text-xs font-medium text-muted">

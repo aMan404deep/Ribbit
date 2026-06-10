@@ -83,8 +83,7 @@ export function CustomCursor() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      // Z-index ultra high, difference blending for that premium awwwards invert look
-      className="hidden md:block pointer-events-none z-[10000] fixed inset-0 w-full h-full mix-blend-difference"
+      className="hidden md:block pointer-events-none z-[10000] fixed inset-0 w-full h-full"
     >
       {/* Outer physics-driven ring */}
       <motion.div
@@ -99,32 +98,32 @@ export function CustomCursor() {
           default: {
             width: 36,
             height: 36,
-            backgroundColor: "rgba(255, 255, 255, 0)",
-            border: "1px solid #ffffff",
+            backgroundColor: "rgba(0, 0, 0, 0)",
+            border: "1px solid var(--color-primary)",
             opacity: 0.8,
             scale: 1,
           },
           pointer: {
             width: 52,
             height: 52,
-            backgroundColor: "#ffffff",
-            border: "0px solid #ffffff",
-            opacity: 1,
+            backgroundColor: "var(--color-primary)",
+            border: "0px solid var(--color-primary)",
+            opacity: 0.15,
             scale: 1,
           },
           image: {
             width: 80,
             height: 80,
-            backgroundColor: "#ffffff",
-            border: "0px solid #ffffff",
+            backgroundColor: "var(--color-primary)",
+            border: "0px solid var(--color-primary)",
             opacity: 1,
             scale: 1,
           },
           text: {
             width: 36,
             height: 36,
-            backgroundColor: "rgba(255, 255, 255, 0)",
-            border: "1px solid #ffffff",
+            backgroundColor: "rgba(0, 0, 0, 0)",
+            border: "1px solid var(--color-primary)",
             opacity: 0.3,
             scale: 0.8,
           }
@@ -137,7 +136,8 @@ export function CustomCursor() {
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
-            className="text-black font-mono font-bold text-[10px] tracking-[0.2em] pl-[0.2em] uppercase"
+            className="font-mono font-bold text-[10px] tracking-[0.2em] pl-[0.2em] uppercase"
+            style={{ color: "var(--color-primary-foreground)" }}
           >
             VIEW
           </motion.span>
@@ -146,16 +146,17 @@ export function CustomCursor() {
 
       {/* Inner instant dot */}
       <motion.div
-        className="absolute top-0 left-0 bg-white rounded-full origin-center"
+        className="absolute top-0 left-0 rounded-full origin-center"
         style={{
           x: cursorX,
           y: cursorY,
           translateX: "-50%",
-          translateY: "-50%" 
+          translateY: "-50%",
+          backgroundColor: "var(--color-primary)"
         }}
         variants={{
           default: { width: 6, height: 6, opacity: 1 },
-          pointer: { width: 8, height: 8, opacity: 0 }, // Hides into the larger white circle
+          pointer: { width: 8, height: 8, opacity: 1 },
           image: { width: 0, height: 0, opacity: 0 },
           text: { width: 2, height: 24, borderRadius: 2, opacity: 1 }
         }}

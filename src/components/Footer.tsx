@@ -1,3 +1,5 @@
+import { AppLogo } from './AppLogo';
+
 export function Footer() {
   return (
     <footer id="support" className="bg-background border-t border-border pt-16 pb-8">
@@ -5,17 +7,14 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
           
           <div className="col-span-2 lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">R</span>
+            <div className="flex items-center space-x-2 mb-6">
+              <div className="w-8 h-8 flex items-center justify-center">
+                <AppLogo className="w-full h-full" />
               </div>
               <span className="font-bold text-xl tracking-tight">Ribbit</span>
             </div>
-            <p className="text-muted text-sm mb-6 max-w-sm">
-              Signal with Nature's Clarity. A professional desktop application for structured broadcast messaging, polling, and rich response analytics.
-            </p>
             <div className="flex items-center space-x-4">
-              <span className="text-xs font-mono bg-card border border-border px-2 py-1 rounded">v0.1.29</span>
+              <span className="text-xs font-mono bg-card border border-border px-2 py-1 rounded">v0.1.38</span>
             </div>
           </div>
 
