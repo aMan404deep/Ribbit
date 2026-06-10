@@ -1,0 +1,6 @@
+{
+  "name": "Ribbit Download",
+  "description": "Marketing and download website for the Ribbit desktop application by Arrise Solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
