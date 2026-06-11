@@ -21,46 +21,42 @@ const placeholderData: MonthGroup[] = [
     weeks: [
       {
         week: "Week 1",
-        title: "The Initial Concept",
+        title: "Foundations & Kickoff",
         type: "experience",
-        content: "Drafted the first set of wireframes. The goal was to build a tool that felt as natural as a frog's ribbit to broadcast messages.",
+        content: "Project kickoff. Defined Ribbit's core purpose and system-level requirements across frontend and backend. Initial infra discussions began.",
         details: [
-          "Sketched out 14 different variations of the core signal broadcasting view.",
-          "Interviewed 5 potential users to refine the core value proposition.",
-          "Settled on a desktop-first approach to avoid the clutter of a mobile-first philosophy."
+          "Frontend: Defined what Ribbit should be and what problems it should solve.",
+          "Backend: High-level infra discussions and system direction finalized (core responsibilities, scaling expectations)."
         ]
       },
       {
         week: "Week 2",
-        title: "First Major Roadblock",
-        type: "challenge",
-        content: "Realized our initial state management approach wouldn't scale for complex nested signals. Had to pause and rethink our data models.",
+        title: "Parallel Exploration",
+        type: "insight",
+        content: "Parallel exploration started for tech stacks, cross-platform feasibility, and DB design.",
         details: [
-          "Attempted to use pure React Context for global state, but encountered massive re-render bottlenecks.",
-          "Investigated Zustand and Redux; ultimately decided on a reactive proxy approach.",
-          "Spent 3 days just rewriting data fetching hooks to stabilize the UI."
+          "Frontend: Researched how to build a cross-platform desktop app (Windows, macOS, Linux).",
+          "Backend: Initial database design started using AI (ChatGPT), but faced early structural challenges and frequent revisions."
         ]
       },
       {
         week: "Week 3",
-        title: "Architecture Breakthrough",
-        type: "achievement",
-        content: "Successfully prototyped the core broadcasting protocol. Seeing data instantly map across multiple clients was a huge mood booster.",
+        title: "Tech Evaluation Phase",
+        type: "challenge",
+        content: "Evaluated tech stacks via small demo apps and identified early structural/concurrency challenges.",
         details: [
-          "Implemented WebSocket connections that successfully maintained 10ms latency under normal loads.",
-          "Built our first functional 'Signal' that updated in real-time across two different local instances.",
-          "Secured our base schema structure for document-based storage."
+          "Frontend: Evaluated tech stacks. Built small demo apps to learn and compare options.",
+          "Backend: Threading and concurrency challenges identified under high load/multi-user stress scenarios. Initial stress testing began."
         ]
       },
       {
         week: "Week 4",
-        title: "Learning from Mistakes",
-        type: "insight",
-        content: "What we did wrong: We tried to build everything custom initially. What we did right: Pivoted quickly to adopt established libraries for the heavy lifting.",
+        title: "Final Decisions Locked",
+        type: "achievement",
+        content: "Stack and infrastructure access finalized. Early infra dependencies cleared.",
         details: [
-          "Scrapped 2,000 lines of custom scrolling logic and replaced it with a virtualized list library.",
-          "Realized 'Not Invented Here' syndrome was slowing us down.",
-          "Team morale improved significantly after we stopped fighting standard browser behaviors."
+          "Frontend: Finalized the stack choice: Electron.js.",
+          "Backend: Redis permission approval completed along with Cursor access approval."
         ]
       }
     ]
@@ -70,24 +66,42 @@ const placeholderData: MonthGroup[] = [
     weeks: [
       {
         week: "Week 5",
-        title: "Building the Engine",
+        title: "Architecture & Core Design",
         type: "experience",
-        content: "Solid week of heads down coding. The focus was entirely on getting the desktop environment optimized.",
+        content: "System architecture discussions across frontend and backend. Full-stack flow defined.",
         details: [
-          "Containerized the core layout to strictly prevent unexpected fluid layout reflows.",
-          "Started building the custom design system (buttons, inputs, signals, cards).",
-          "Decided on a 'slate' dark mode aesthetic, avoiding pure blacks."
+          "Frontend: Deep architecture discussions: frontend, backend, database, and integrations.",
+          "Backend: Cursor-assisted database redesign improved schema structure and reduced earlier design issues."
+        ]
+      },
+      {
+        week: "Week 6",
+        title: "Data & Communication Layer",
+        type: "achievement",
+        content: "Finalized data storage splits and the communication layers between client and server.",
+        details: [
+          "Frontend: Local vs cloud storage decisions completed. Local DB integration direction agreed.",
+          "Backend: SSE (Server-Sent Events) chosen for communication. Major backend refactor initiated for better scalability and maintainability."
         ]
       },
       {
         week: "Week 7",
-        title: "Performance Issues",
+        title: "Infrastructure Onboarding",
         type: "challenge",
-        content: "Hit a massive performance wall when rendering over 1,000 signals simultaneously. Thread locking crashes were common.",
+        content: "DevOps rollout and infrastructure onboarding presented friction due to pending stakeholders approvals.",
         details: [
-          "DOM nodes exploded to over 25,000. Chrome profiling showed excessive restyling.",
-          "Implemented aggressive debouncing and lazy-loading for off-screen signal components.",
-          "Had to disable CSS backdrop-filters as they were causing GPU spikes."
+          "Frontend: Finalized local database integration approach.",
+          "Backend: DevOps infrastructure setup started (GitLab, servers, RDS, CloudWatch). Multiple approvals pending (Jacob, Jayaram, Sankara)."
+        ]
+      },
+      {
+        week: "Week 8",
+        title: "Infrastructure Stabilization",
+        type: "experience",
+        content: "Pipeline and environment groundwork progressed alongside frontend groundwork.",
+        details: [
+          "Frontend: Worked out server ↔ client communication using Server-Sent Events (SSE).",
+          "Backend: Continued DevOps setup and early integration of infra components. Pipeline groundwork progressed."
         ]
       }
     ]
@@ -96,25 +110,43 @@ const placeholderData: MonthGroup[] = [
     month: "March 2026",
     weeks: [
       {
-        week: "Week 10",
-        title: "The Beta Release",
+        week: "Week 9",
+        title: "First End-to-End Validation",
         type: "achievement",
-        content: "Pushed our first semi-stable build to a small group of testers. The feedback was incredibly motivating.",
+        content: "Built Phase 1 UI and basic backend alignment to demonstrate product direction and feasibility.",
         details: [
-          "Packaged the first macOS DMG and Windows EXE.",
-          "Distributed to 12 alpha testers.",
-          "Received our first piece of positive feedback: 'It feels surprisingly fast'."
+          "Frontend: Built Phase 1 UI to demonstrate end-to-end feasibility.",
+          "Backend: Started adapting backend services to new infra setup. Initial migration and compatibility testing."
+        ]
+      },
+      {
+        week: "Week 10",
+        title: "Phase 1 Demo & Feedback",
+        type: "challenge",
+        content: "Demoed Phase 1. Core functionality validated, but UI feedback was negative and backend exposed stress points.",
+        details: [
+          "Frontend: Demoed Phase 1 UI. Core functionality validated. UI feedback was negative.",
+          "Backend: Continued infra validation. Stability testing and concurrency issues revisited under new environment."
+        ]
+      },
+      {
+        week: "Week 11",
+        title: "System Redesign Phase",
+        type: "insight",
+        content: "Revamping UI/UX while entering a formal backend Graph API security review.",
+        details: [
+          "Frontend: Revamped UI and UX with help from the UI team (Aditya).",
+          "Backend: Graph API security review initiated (Roman, Gururaj, Olekyendra, Furqan). Estimated duration: 1–1.5 months."
         ]
       },
       {
         week: "Week 12",
-        title: "UI Overhaul",
-        type: "insight",
-        content: "Realized our dark mode wasn't actually accessible. Had to rewrite our entire color token system to increase contrast.",
+        title: "Parallel Stabilization",
+        type: "experience",
+        content: "Polishing frontend while the backend navigates ongoing security review and DevOps alignment.",
         details: [
-          "Testers complained about gray text on gray backgrounds.",
-          "Ran total accessibility audits, pushing all structural gray contrasts to WCAG AA minimums.",
-          "Introduced 'emerald' as our primary action color for a sharp pop."
+          "Frontend: Continued UI polish and usability improvements based on feedback.",
+          "Backend: Parallel progress on security review + DevOps coordination. Multiple back-and-forth discussions."
         ]
       }
     ]
@@ -123,14 +155,43 @@ const placeholderData: MonthGroup[] = [
     month: "April 2026",
     weeks: [
       {
-        week: "Week 15",
-        title: "OS Integrations",
+        week: "Week 13",
+        title: "Infra Migration Begins",
         type: "challenge",
-        content: "Native notifications proved to be a pain across Windows, macOS, and Linux. Lots of edge cases to handle.",
+        content: "Backend infra migration into new DevOps setup. Frontend continued addressing UX feedback.",
         details: [
-          "macOS required specific entitlements we didn't initially have.",
-          "Windows Action Center grouped notifications incorrectly.",
-          "Spent weeks writing platform-specific notification glue code."
+          "Frontend: Designed notification behavior. Explored scheduling and periodic delivery.",
+          "Backend: Ongoing DevOps and security coordination. GitLab instance configuration issues and alignment discussions."
+        ]
+      },
+      {
+        week: "Week 14",
+        title: "Pipeline Stabilization",
+        type: "experience",
+        content: "Securing deployment pipelines and ironing out OS-specific notification behavior.",
+        details: [
+          "Frontend: Implemented scheduled notifications across Windows, macOS, and Linux.",
+          "Backend: Infra stabilization phase. Fixes around deployment pipelines, permissions, and environment consistency."
+        ]
+      },
+      {
+        week: "Week 15",
+        title: "System Hardening",
+        type: "insight",
+        content: "Designing persistent screen behaviors for frontend while the backend stabilizes under security constraints.",
+        details: [
+          "Frontend: Implemented persistent alerts and screen lockdown for a selected period.",
+          "Backend: Continued Graph API security review + backend infra hardening. System gradually stabilized."
+        ]
+      },
+      {
+        week: "Week 16",
+        title: "Stability Milestone",
+        type: "achievement",
+        content: "A major resolution phase. Reduced deployment instability and stabilized OS-level behaviors.",
+        details: [
+          "Frontend: Stabilized persistent alerts. Addressed remaining OS differences, especially on Linux.",
+          "Backend: Major resolution phase for DevOps/security feedback loops. Reduced instability and finalized key infra behavior."
         ]
       }
     ]
@@ -139,14 +200,43 @@ const placeholderData: MonthGroup[] = [
     month: "May 2026",
     weeks: [
       {
-        week: "Week 20",
-        title: "Scaling the Backend",
+        week: "Week 17",
+        title: "Feature Expansion Begins",
         type: "experience",
-        content: "Spent most of this month optimizing database queries and reducing latency for cross-region signaling.",
+        content: "Labels system introduced along with supporting schema updates and APIs.",
         details: [
-          "Migrated away from simple regional databases to a globally distributed topology.",
-          "Implemented read-replicas closer to user nodes.",
-          "Halved the TTFB (Time to First Byte) on initial load."
+          "Frontend: Added labels system and supporting UI.",
+          "Backend: Final stages of Graph API security review. Addressed remaining security concerns and compliance adjustments."
+        ]
+      },
+      {
+        week: "Week 18",
+        title: "Group System Development",
+        type: "achievement",
+        content: "Implemented group workflows, logics, and privacy access controls.",
+        details: [
+          "Frontend: Added groups. Designed group flows and updated UI.",
+          "Backend: DevOps and backend integration refinement. Ensured production readiness and consistent deployment flow."
+        ]
+      },
+      {
+        week: "Week 19",
+        title: "Privacy & Approvals",
+        type: "experience",
+        content: "Group privacy access controls implemented and final stakeholder validations were achieved.",
+        details: [
+          "Frontend: Implemented group privacy access controls.",
+          "Backend: Approvals and final validations completed across stakeholders. Backend system considered near-stable."
+        ]
+      },
+      {
+        week: "Week 20",
+        title: "Forms & System Consolidation",
+        type: "insight",
+        content: "Form builder introduced while backend focused on cleanup and readiness for product integrations.",
+        details: [
+          "Frontend: Added forms with different question types.",
+          "Backend: Full backend stabilization. Cleanup of infra edge cases and readiness for product-level integrations."
         ]
       }
     ]
@@ -155,14 +245,23 @@ const placeholderData: MonthGroup[] = [
     month: "June 2026",
     weeks: [
       {
-        week: "Week 24",
-        title: "Launch Prep & Reflection",
+        week: "Week 21",
+        title: "Optimization & Acceleration",
         type: "achievement",
-        content: "Final polish. Looking back, the journey has been exhausting but deeply rewarding. We made it to v1.0.",
+        content: "Testing acceleration features completed. Focus shifted to speeding up iteration cycles.",
         details: [
-          "Finalized copy and assets for the landing page.",
-          "Confirmed app stability with zero unresolved blocker bugs.",
-          "Hit the 'Publish' button on our respective package channels."
+          "Frontend (Jun 1–7): Implemented signal cloning to speed up testing and iteration.",
+          "Backend (Jun 1–7): Backend support for signal cloning feature enabled to accelerate testing cycles."
+        ]
+      },
+      {
+        week: "Week 22",
+        title: "Updates & Release Readiness",
+        type: "experience",
+        content: "Release pipeline and app update infrastructure completed and aligned for production rollout.",
+        details: [
+          "Frontend (Jun 8–12): Designed and implemented app updates for all three operating systems (in progress as of Jun 12).",
+          "Backend (Jun 8–12): Backend support for app update system across Windows/macOS/Linux. Final coordination for release pipeline in progress."
         ]
       }
     ]
