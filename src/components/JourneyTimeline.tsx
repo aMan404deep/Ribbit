@@ -8,6 +8,10 @@ interface WeekData {
   type: string;
   content: string;
   details?: string[];
+  docLink?: {
+    label: string;
+    url: string;
+  };
 }
 
 interface MonthGroup {
@@ -27,7 +31,11 @@ const placeholderData: MonthGroup[] = [
         details: [
           "Frontend: Defined what Ribbit should be and what problems it should solve.",
           "Backend: High-level infra discussions and system direction finalized (core responsibilities, scaling expectations)."
-        ]
+        ],
+        docLink: {
+          label: "Arch Doc: What Ribbit Is",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
+        }
       },
       {
         week: "Week 2",
@@ -57,7 +65,11 @@ const placeholderData: MonthGroup[] = [
         details: [
           "Frontend: Finalized the stack choice: Electron.js.",
           "Backend: Redis permission approval completed along with Cursor access approval."
-        ]
+        ],
+        docLink: {
+          label: "Arch Doc: Tech Stack",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
+        }
       }
     ]
   },
@@ -82,7 +94,11 @@ const placeholderData: MonthGroup[] = [
         details: [
           "Frontend: Local vs cloud storage decisions completed. Local DB integration direction agreed.",
           "Backend: SSE (Server-Sent Events) chosen for communication. Major backend refactor initiated for better scalability and maintainability."
-        ]
+        ],
+        docLink: {
+          label: "Arch Doc: Local Persistence (SQLite)",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
+        }
       },
       {
         week: "Week 7",
@@ -102,7 +118,11 @@ const placeholderData: MonthGroup[] = [
         details: [
           "Frontend: Worked out server ↔ client communication using Server-Sent Events (SSE).",
           "Backend: Continued DevOps setup and early integration of infra components. Pipeline groundwork progressed."
-        ]
+        ],
+        docLink: {
+          label: "Arch Doc: Data Flow",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
+        }
       }
     ]
   },
@@ -262,7 +282,11 @@ const placeholderData: MonthGroup[] = [
         details: [
           "Frontend (Jun 8–12): Designed and implemented app updates for all three operating systems (in progress as of Jun 12).",
           "Backend (Jun 8–12): Backend support for app update system across Windows/macOS/Linux. Final coordination for release pipeline in progress."
-        ]
+        ],
+        docLink: {
+          label: "Arch Doc: Auto-Update",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
+        }
       }
     ]
   }
@@ -302,7 +326,7 @@ const getThemeForType = (type: string) => {
   }
 };
 
-const TimelineItem = ({ data, index, isLastInCategory }: { data: WeekData; index: number; isLastInCategory: boolean }) => {
+const TimelineItem = ({ data, index, isLastInCategory }: { data: WeekData; index: number; isLastInCategory: boolean; key?: number | string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const theme = getThemeForType(data.type);
 
@@ -352,16 +376,29 @@ const TimelineItem = ({ data, index, isLastInCategory }: { data: WeekData; index
           {data.content}
         </p>
 
-        {data.details && data.details.length > 0 && (
-          <div className="mt-4 flex items-center gap-2">
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
+          {data.details && data.details.length > 0 && (
             <div className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground">
               <span className="p-1 rounded bg-card border border-border">
                 {isOpen ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
               </span>
               {isOpen ? "Hide details" : "Show details"}
             </div>
-          </div>
-        )}
+          )}
+
+          {data.docLink && (
+            <a
+              href={data.docLink.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors ml-auto px-3 py-1.5 rounded bg-primary/5 border border-primary/20 hover:bg-primary/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {data.docLink.label}
+              <ExternalLink className="w-3 h-3 ml-0.5" />
+            </a>
+          )}
+        </div>
 
         <AnimatePresence>
           {isOpen && data.details && (
