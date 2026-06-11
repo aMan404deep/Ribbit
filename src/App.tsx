@@ -10,6 +10,7 @@ import { DeepDive } from './components/DeepDive';
 import { NotificationsFeature } from './components/NotificationsFeature';
 import { DownloadSection } from './components/DownloadSection';
 import { FAQ } from './components/FAQ';
+import { JourneyTimeline } from './components/JourneyTimeline';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 
@@ -23,6 +24,7 @@ export default function App() {
         <FeatureGrid />
         <DeepDive />
         <NotificationsFeature />
+        <JourneyTimeline />
         <DownloadSection />
         <FAQ />
       </main>

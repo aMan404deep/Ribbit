@@ -34,6 +34,7 @@ export function Navigation() {
 
         <div className="hidden md:flex items-center gap-8 font-medium text-sm text-muted">
           <a href="#features" className="hover:text-primary transition-colors">Features</a>
+          <a href="#journey" className="hover:text-primary transition-colors">Journey</a>
           <a href="#changelog" className="hover:text-primary transition-colors">Changelog</a>
           <a href="#support" className="hover:text-primary transition-colors">Docs</a>
           
@@ -65,6 +66,7 @@ export function Navigation() {
         >
           <div className="flex flex-col space-y-4">
             <a href="#features" onClick={() => setMobileMenuOpen(false)} className="font-medium px-2 py-1">Features</a>
+            <a href="#journey" onClick={() => setMobileMenuOpen(false)} className="font-medium px-2 py-1">Journey</a>
             <a href="#download" onClick={() => setMobileMenuOpen(false)} className="font-medium px-2 py-1">Download</a>
             <a href="#support" onClick={() => setMobileMenuOpen(false)} className="font-medium px-2 py-1">Support</a>
             <a href="#download" onClick={() => setMobileMenuOpen(false)} className="bg-primary text-primary-foreground text-center px-4 py-3 rounded-lg font-medium flex items-center justify-center gap-2">
