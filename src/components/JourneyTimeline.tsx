@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
-import { Plus, Minus, AlertCircle, CheckCircle2, Lightbulb, Compass, ArrowRight, Activity } from 'lucide-react';
+import { Plus, Minus, AlertCircle, CheckCircle2, Lightbulb, Compass, ArrowRight, Activity, ExternalLink } from 'lucide-react';
 
 interface WeekData {
   week: string;
@@ -334,6 +334,46 @@ export function JourneyTimeline() {
 
             </div>
           ))}
+        </div>
+
+        {/* Architecture Documents Section */}
+        <div className="mt-24 md:mt-32 max-w-5xl mx-auto border-t border-border pt-12 md:pt-16">
+          <div className="bg-background rounded-2xl border border-border p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 relative overflow-hidden group">
+            {/* Background Accent */}
+            <div className="absolute top-[-50%] right-[-5%] w-[40%] h-[200%] bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-500 pointer-events-none" />
+            
+            <div className="relative z-10 flex-1">
+              <h4 className="text-2xl font-bold mb-3 text-foreground">Deep Dive into the Architecture</h4>
+              <p className="text-muted text-base max-w-xl leading-relaxed">
+                Explore the comprehensive technical documentation outlining our system design, core infrastructure choices, and the underlying rationale behind the project.
+              </p>
+            </div>
+
+            <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+              <a
+                href="https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary-hover shadow-sm transition-all hover:shadow hover:-translate-y-0.5 w-full sm:w-auto min-w-[220px]"
+              >
+                Frontend Architecture
+                <ExternalLink className="w-4 h-4 ml-1 opacity-90" />
+              </a>
+              <a
+                href="#"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-card border border-border text-foreground font-semibold rounded-lg hover:bg-muted/10 shadow-sm transition-all hover:shadow hover:-translate-y-0.5 w-full sm:w-auto min-w-[220px]"
+                onClick={(e) => {
+                  if (e.currentTarget.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    // Placeholder action
+                  }
+                }}
+              >
+                Backend Architecture
+                <ExternalLink className="w-4 h-4 ml-1 opacity-90" />
+              </a>
+            </div>
+          </div>
         </div>
 
       </div>
