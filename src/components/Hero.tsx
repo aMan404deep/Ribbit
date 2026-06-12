@@ -33,7 +33,7 @@ export function Hero() {
             <span className="inline-flex items-center px-3 py-1 bg-firefly/30 border border-primary/20 rounded-full text-primary-text text-xs font-bold uppercase tracking-wider mb-6">
               New: Stage B Analytics
             </span>
-            <h1 className="text-5xl lg:text-6xl font-bold leading-[0.95] tracking-tighter mb-6 bg-gradient-to-r from-primary to-firefly bg-clip-text text-transparent hover:brightness-125 transition-all duration-300 animate-breathe">
+            <h1 className="text-5xl lg:text-6xl font-bold leading-[0.95] tracking-tighter mb-6 pb-2 bg-gradient-to-r from-primary to-firefly bg-clip-text text-transparent hover:brightness-125 transition-all duration-300 animate-breathe">
               Never miss a <br />
               <span>Critical Signal</span>
             </h1>
