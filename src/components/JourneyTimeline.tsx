@@ -90,7 +90,11 @@ const placeholderData: MonthGroup[] = [
           "Passionate debates: Architecture discussions that went back and forth for hours. We cared so much about getting it right.",
           "Pioneering SSE: Taking a risk as the first team to implement Server-Sent Events for real-time communication.",
           "Finding clarity: A Cursor-assisted database redesign finally cleared the fog from our earlier, flawed schemas."
-        ]
+        ],
+        docLink: {
+          label: "Arch Doc: Backend Architecture",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/IYBCUQE"
+        }
       },
       {
         week: "Week 6",
@@ -109,48 +113,19 @@ const placeholderData: MonthGroup[] = [
       },
       {
         week: "Week 7",
-        title: "Meeting the Machine",
-        type: "challenge",
-        content: "Welcome to enterprise development. We hit a wall of approvals, infosec reviews, and DevOps setups. It was frustratingly slow, but getting a soft sign-off from Infosec gave us a glimmer of hope. Also, we had to say a bittersweet goodbye to Satvik as he moved to the Noida office.",
+        title: "Meeting the Machine & The First Prototype",
+        type: "achievement",
+        content: "Welcome to enterprise development. We hit a wall of approvals and DevOps setups, and said a bittersweet goodbye to Satvik as he moved to Noida. Despite this, we slapped together our Phase 1 UI and basic backend alignment, creating our first working prototype. Showing it to Zucky and Shweta was terrifying, but seeing the app actually breathe was magical.",
         details: [
           "The waiting game: DevOps setup began (GitLab, RDS), but we were stalled by pending approvals from leadership.",
           "A glimmer of hope: A soft sign-off from Infosec meant our SSO approach wasn't completely crazy.",
-          "Team changes: Satvik relocated to the Noida office, forcing us to adapt our daily rhythms."
+          "Team changes: Satvik relocated to the Noida office, forcing us to adapt our daily rhythms.",
+          "It’s alive!: Building the Phase 1 UI and seeing end-to-end data flow.",
+          "The big reveal: Nervous heartbeats as we demoed the prototype to Zucky and Shweta."
         ]
       },
       {
         week: "Week 8",
-        title: "Compromise & Growth",
-        type: "experience",
-        content: "A humbling week of learning to compromise. We realized our 'ideal' architecture clashed with what the DevOps team was used to supporting. We moved from EC2 to EKS, then to ECS. It was a masterclass in flexibility.",
-        details: [
-          "The reality check: Re-iterating our architecture to match DevOps realities, bouncing from EC2 to EKS to ECS.",
-          "Bridging the gap: Both our team and the infra team had to bend and learn from each other.",
-          "Nailing the connection: Server-client communication finally clicked into place."
-        ],
-        docLink: {
-          label: "Arch Doc: Data Flow",
-          url: "https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
-        }
-      }
-    ]
-  },
-  {
-    month: "March 2026",
-    weeks: [
-      {
-        week: "Week 9",
-        title: "The Prototype Nerve-Wracker",
-        type: "achievement",
-        content: "The moment of truth. We slapped together our Phase 1 UI and basic backend alignment, creating our very first working prototype. Showing it to Zucky and Shweta was terrifying, but seeing the app actually 'breathe' for the first time was magical.",
-        details: [
-          "It’s alive!: Building the Phase 1 UI and finally seeing end-to-end data flow.",
-          "The big reveal: Nervous heartbeats as we demoed the prototype to Zucky and Shweta.",
-          "Under the hood: Quietly wrestling with the new infra setup and compatibility testing in the background."
-        ]
-      },
-      {
-        week: "Week 10",
         title: "A Tough Pill to Swallow",
         type: "challenge",
         content: "The core functionality worked, but the UI... didn't land. The internal feedback was brutally honest and mostly negative. It hurt our pride, but deep down, we knew they were right. It was time to swallow our egos and do better.",
@@ -159,6 +134,36 @@ const placeholderData: MonthGroup[] = [
           "A mountain of feedback: Internal reviews left us with a steep climb of improvements to make.",
           "Backend groans: Stability tests in the new environment surfaced old ghosts of concurrency issues."
         ]
+      }
+    ]
+  },
+  {
+    month: "March 2026",
+    weeks: [
+      {
+        week: "Week 9",
+        title: "Testing & Pre-Release Build",
+        type: "experience",
+        content: "We were gearing up for our first build release, which meant pencils down on new features. We kicked off an intensive testing sprint, obsessively hunting down bugs.",
+        details: [
+          "Pre-release jitters: Testing every corner of the app as we prepared to hand over our first build.",
+          "Squashing bugs: A frantic sprint to fix the most glaring issues before the deadline.",
+          "Feature freeze: No more new ideas, just making sure the current ones actually worked."
+        ]
+      },
+      {
+        week: "Week 10",
+        title: "Piping the Data",
+        type: "experience",
+        content: "With testing rolling out, we doubled down on our real-time data flows. Server-client communication was officially born via SSE, and the groundwork for our deployment pipelines started to take shape.",
+        details: [
+          "Nailing the connection: Server-client communication finally clicked into place via Server-Sent Events (SSE).",
+          "Pipeline groundwork: We started early integration of devops components, laying the tracks for our eventual deployments."
+        ],
+        docLink: {
+          label: "Arch Doc: Data Flow",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
+        }
       },
       {
         week: "Week 11",
@@ -218,7 +223,11 @@ const placeholderData: MonthGroup[] = [
           "Security by fire: The relentless Graph API review forced us to build an incredibly resilient backend.",
           "Lockdown mode: Implementing persistent alerts and screen takeovers that commanded the user's attention.",
           "A sense of security: The system was finally becoming stable under immense scrutiny."
-        ]
+        ],
+        docLink: {
+          label: "Arch Doc: Backend Security & Stability",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/IYBCUQE"
+        }
       },
       {
         week: "Week 16",
@@ -278,7 +287,11 @@ const placeholderData: MonthGroup[] = [
           "The creative sprint: Building a dynamic, multi-question form builder to cap off our feature set.",
           "The deep clean: Eradicating edge cases and sweeping up technical debt in the backend.",
           "Ready for the big leagues: The system was completely primed for real-world product integration."
-        ]
+        ],
+        docLink: {
+          label: "Arch Doc: Infrastructure Resilience",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/IYBCUQE"
+        }
       }
     ]
   },
@@ -309,6 +322,21 @@ const placeholderData: MonthGroup[] = [
         docLink: {
           label: "Arch Doc: Auto-Update",
           url: "https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
+        }
+      },
+      {
+        week: "Week 23",
+        title: "Compromise & Growth",
+        type: "insight",
+        content: "The latest development: A humbling week of learning to compromise. We realized our 'ideal' architecture clashed with what the DevOps team was used to supporting. We moved from EC2 to EKS, then to ECS. It was a masterclass in flexibility.",
+        details: [
+          "The reality check: Re-iterating our architecture to match DevOps realities, bouncing from EC2 to EKS to ECS.",
+          "Bridging the gap: Both our team and the infra team had to bend and learn from each other.",
+          "Adapting fast: It was all new to the team, so they had to adjust at few places and we had to adjust at some."
+        ],
+        docLink: {
+          label: "Arch Doc: Infrastructure Resilience",
+          url: "https://pragmaticplay.atlassian.net/wiki/x/IYBCUQE"
         }
       }
     ]
@@ -519,14 +547,10 @@ export function JourneyTimeline() {
                 <ExternalLink className="w-4 h-4 ml-1 opacity-90" />
               </a>
               <a
-                href="#"
+                href="https://pragmaticplay.atlassian.net/wiki/x/IYBCUQE"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-card border border-border text-foreground font-semibold rounded-lg hover:bg-muted/10 shadow-sm transition-all hover:shadow hover:-translate-y-0.5 w-full sm:w-auto min-w-[220px]"
-                onClick={(e) => {
-                  if (e.currentTarget.getAttribute('href') === '#') {
-                    e.preventDefault();
-                    // Placeholder action
-                  }
-                }}
               >
                 Backend Architecture
                 <ExternalLink className="w-4 h-4 ml-1 opacity-90" />
