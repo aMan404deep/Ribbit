@@ -2,8 +2,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 import { Plus, Minus, AlertCircle, CheckCircle2, Lightbulb, Compass, ArrowRight, Activity, ExternalLink } from 'lucide-react';
 
-interface WeekData {
-  week: string;
+interface TimelineEntry {
+  period: string;
   title: string;
   type: string;
   content: string;
@@ -16,15 +16,15 @@ interface WeekData {
 
 interface MonthGroup {
   month: string;
-  weeks: WeekData[];
+  entries: TimelineEntry[];
 }
 
 const placeholderData: MonthGroup[] = [
   {
     month: "January 2026",
-    weeks: [
+    entries: [
       {
-        week: "Week 1",
+        period: "Update 1",
         title: "The Spark",
         type: "experience",
         content: "It started with a simple idea from Zucky: what if we built something better? Armed with minimal resources and boundless enthusiasm, we kicked off Ribbit. We brought in hungry interns, drafted our first PRD, and started dreaming big about what this desktop app could become.",
@@ -40,10 +40,10 @@ const placeholderData: MonthGroup[] = [
         }
       },
       {
-        week: "Week 2",
+        period: "Update 2",
         title: "First Steps & Stumbles",
         type: "insight",
-        content: "With our vision set, reality hit. We had to figure out how to actually build this thing across Windows, Mac, and Linux. It was a week of frantic research, late-night AI prompts for database designs, and realizing how much we didn't know.",
+        content: "With our vision set, reality hit. We had to figure out how to actually build this thing across Windows, Mac, and Linux. It was a period of frantic research, late-night AI prompts for database designs, and realizing how much we didn't know.",
         details: [
           "The cross-platform puzzle: Diving deep into how to make a single codebase work everywhere.",
           "Wrestling with the database: Initial designs using ChatGPT felt like walking through mud—constant revisions and structural headaches.",
@@ -51,7 +51,7 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 3",
+        period: "Update 3",
         title: "Getting Our Hands Dirty",
         type: "challenge",
         content: "We stopped talking and started coding. We spun up GitHub repos, scraped together every free tier and student offer we could find, and built tiny throwaway apps to test our theories. But early load tests revealed terrifying concurrency issues.",
@@ -62,7 +62,7 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 4",
+        period: "Update 4",
         title: "Locking It In",
         type: "achievement",
         content: "After a grueling month, we made our bets. We chose Electron.js for the frontend and began the arduous process of navigating corporate infra approvals. Getting Redis and Cursor access felt like winning a small war.",
@@ -80,9 +80,9 @@ const placeholderData: MonthGroup[] = [
   },
   {
     month: "February 2026",
-    weeks: [
+    entries: [
       {
-        week: "Week 5",
+        period: "Update 5",
         title: "Architecting the Dream",
         type: "experience",
         content: "The architectural debates were intense. Frontend, backend, database—everyone had strong opinions. We pushed boundaries, becoming the first team to implement Server-Sent Events (SSE). It was exhausting but exhilarating.",
@@ -97,7 +97,7 @@ const placeholderData: MonthGroup[] = [
         }
       },
       {
-        week: "Week 6",
+        period: "Update 6",
         title: "Tearing Down to Build Up",
         type: "achievement",
         content: "We realized our backend wasn't going to hold up, so we made the painful choice to refactor early. Meanwhile, we drew the hard lines on what lived locally versus what lived in the cloud. It felt like open-heart surgery on our young codebase.",
@@ -112,7 +112,7 @@ const placeholderData: MonthGroup[] = [
         }
       },
       {
-        week: "Week 7",
+        period: "Update 7",
         title: "Meeting the Machine & The First Prototype",
         type: "achievement",
         content: "Welcome to enterprise development. We hit a wall of approvals and DevOps setups, and said a bittersweet goodbye to Satvik as he moved to Noida. Despite this, we slapped together our Phase 1 UI and basic backend alignment, creating our first working prototype. Showing it to Zucky and Shweta was terrifying, but seeing the app actually breathe was magical.",
@@ -125,7 +125,7 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 8",
+        period: "Update 8",
         title: "A Tough Pill to Swallow",
         type: "challenge",
         content: "The core functionality worked, but the UI... didn't land. The internal feedback was brutally honest and mostly negative. It hurt our pride, but deep down, we knew they were right. It was time to swallow our egos and do better.",
@@ -139,9 +139,9 @@ const placeholderData: MonthGroup[] = [
   },
   {
     month: "March 2026",
-    weeks: [
+    entries: [
       {
-        week: "Week 9",
+        period: "Update 9",
         title: "Testing & Pre-Release Build",
         type: "experience",
         content: "We were gearing up for our first build release, which meant pencils down on new features. We kicked off an intensive testing sprint, obsessively hunting down bugs.",
@@ -152,7 +152,7 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 10",
+        period: "Update 10",
         title: "Piping the Data",
         type: "experience",
         content: "With testing rolling out, we doubled down on our real-time data flows. Server-client communication was officially born via SSE, and the groundwork for our deployment pipelines started to take shape.",
@@ -166,7 +166,7 @@ const placeholderData: MonthGroup[] = [
         }
       },
       {
-        week: "Week 11",
+        period: "Update 11",
         title: "Finding Our Guardian Angels",
         type: "insight",
         content: "Drowning in UI debt, we reached out for help. Aditya from the design team became our unsung hero, squeezing us in whenever he had a free moment. Simultaneously, we triggered the Eye of Sauron (Infosec) by asking for MS Graph APIs.",
@@ -177,7 +177,7 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 12",
+        period: "Update 12",
         title: "The Waiting Game",
         type: "experience",
         content: "We hit a strange milestone: almost all our key features were done. Everything looked great on the frontend. But we were chained to the ground by lingering environment setups and endless DevOps discussions. We had a Ferrari, but we were waiting for the road to be built.",
@@ -191,12 +191,12 @@ const placeholderData: MonthGroup[] = [
   },
   {
     month: "April 2026",
-    weeks: [
+    entries: [
       {
-        week: "Week 13",
+        period: "Update 13",
         title: "Lost in Translation",
         type: "challenge",
-        content: "If last week was a waiting game, this week was a game of telephone. Communication delays between us and DevOps caused endless friction. They made changes, we made changes, things broke. We desperately tried to find rhythm while designing our notification system.",
+        content: "If the last update was a waiting game, this one was a game of telephone. Communication delays between us and DevOps caused endless friction. They made changes, we made changes, things broke. We desperately tried to find rhythm while designing our notification system.",
         details: [
           "Communication breakdown: Misalignments and delays as we tried to sync our code with DevOps' changes.",
           "Frustration mounts: Struggling with GitLab configuration issues that slowed us to a crawl.",
@@ -204,7 +204,7 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 14",
+        period: "Update 14",
         title: "Smoothing the Rough Edges",
         type: "experience",
         content: "Slowly, painfully, the chaotic pipelines started to solidify. We finally got permissions sorted and environments consistent. On the frontend, getting notifications to behave perfectly across Mac, Windows, and Linux felt like wrestling a three-headed dog.",
@@ -215,7 +215,7 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 15",
+        period: "Update 15",
         title: "Fortifying the Castle",
         type: "insight",
         content: "The security reviews raged on, forcing us to harden every inch of our backend. We matched that intensity on the frontend by building 'lockdown' features and persistent alerts. The app was no longer just a tool; it was becoming a fortress.",
@@ -230,7 +230,7 @@ const placeholderData: MonthGroup[] = [
         }
       },
       {
-        week: "Week 16",
+        period: "Update 16",
         title: "The Clouds Part",
         type: "achievement",
         content: "Finally, a breakthrough. The endless feedback loops with DevOps and Security finally closed. The infrastructure held firm. Even Linux, our most stubborn OS child, finally played nice with our notifications. For the first time, we could breathe.",
@@ -244,20 +244,20 @@ const placeholderData: MonthGroup[] = [
   },
   {
     month: "May 2026",
-    weeks: [
+    entries: [
       {
-        week: "Week 17",
+        period: "Update 17",
         title: "The Relentless March",
         type: "experience",
         content: "We refused to be slowed down by the final, dragging stages of the Graph API review. We put our heads down and kept delivering. We pushed out a whole new Labeling system. The momentum was intoxicating; nothing could stop us from building Ribbit.",
         details: [
-          "Unstoppable momentum: Delivering bi-weekly features despite crushing administrative overhead.",
+          "Unstoppable momentum: Delivering regular features despite crushing administrative overhead.",
           "Organizing the chaos: Shipping a complex Labeling system across the full stack.",
           "The finish line in sight: Wrapping up the very last remnants of the grueling security compliance checks."
         ]
       },
       {
-        week: "Week 18",
+        period: "Update 18",
         title: "Bringing People Together",
         type: "achievement",
         content: "Ribbit was evolving from a single-user tool into a true collaborative platform. Building the Groups system challenged us to think deeply about workflows and UI. Behind the scenes, the deployment flow finally became a boring, predictable routine—which is exactly what you want.",
@@ -268,10 +268,10 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 19",
+        period: "Update 19",
         title: "The Final Stamps",
         type: "experience",
-        content: "We tackled the nerve-wracking complexity of group privacy and access controls. But the real triumph of the week was hearing those magic words: 'Approved.' Key stakeholders gave their final validations, and our turbulent backend was officially deemed 'stable.'",
+        content: "We tackled the nerve-wracking complexity of group privacy and access controls. But the real triumph of the period was hearing those magic words: 'Approved.' Key stakeholders gave their final validations, and our turbulent backend was officially deemed 'stable.'",
         details: [
           "The privacy maze: Carefully engineering foolproof access controls for our new Groups feature.",
           "The 'Approved' stamp: Surpassing the final, massive hurdles of stakeholder validation.",
@@ -279,7 +279,7 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 20",
+        period: "Update 20",
         title: "Polishing the Diamond",
         type: "insight",
         content: "With everything stable, we added the cherry on top: a dynamic form builder. While the frontend team ran wild with question types and UIs, the backend team operated like janitors, cleaning up edge cases and polishing the infrastructure until it shone.",
@@ -297,9 +297,9 @@ const placeholderData: MonthGroup[] = [
   },
   {
     month: "June 2026",
-    weeks: [
+    entries: [
       {
-        week: "Week 21",
+        period: "Update 21",
         title: "Need for Speed",
         type: "achievement",
         content: "We realized our testing cycles were too slow. So, we stopped building for the users for a moment, and built for ourselves. Creating 'signal cloning' was a game-changer; suddenly, what took minutes of manual setup took seconds. We were flying.",
@@ -310,7 +310,7 @@ const placeholderData: MonthGroup[] = [
         ]
       },
       {
-        week: "Week 22",
+        period: "Update 22",
         title: "The Launchpad",
         type: "experience",
         content: "This is it. The final stretch. We stared down the terrifying reality of auto-updates across Mac, Windows, and Linux. The release pipelines are humming, the final coordination is happening, and we're standing on the precipice of v1.0. We are exhausted, but we've never been prouder.",
@@ -325,10 +325,10 @@ const placeholderData: MonthGroup[] = [
         }
       },
       {
-        week: "Week 23",
+        period: "Update 23",
         title: "Compromise & Growth",
         type: "insight",
-        content: "The latest development: A humbling week of learning to compromise. We realized our 'ideal' architecture clashed with what the DevOps team was used to supporting. We moved from EC2 to EKS, then to ECS. It was a masterclass in flexibility.",
+        content: "The latest development: A humbling time of learning to compromise. We realized our 'ideal' architecture clashed with what the DevOps team was used to supporting. We moved from EC2 to EKS, then to ECS. It was a masterclass in flexibility.",
         details: [
           "The reality check: Re-iterating our architecture to match DevOps realities, bouncing from EC2 to EKS to ECS.",
           "Bridging the gap: Both our team and the infra team had to bend and learn from each other.",
@@ -377,7 +377,7 @@ const getThemeForType = (type: string) => {
   }
 };
 
-const TimelineItem = ({ data, index, isLastInCategory }: { data: WeekData; index: number; isLastInCategory: boolean; key?: number | string }) => {
+const TimelineItem = ({ data, index, isLastInCategory }: { data: TimelineEntry; index: number; isLastInCategory: boolean; key?: number | string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const theme = getThemeForType(data.type);
 
@@ -410,7 +410,7 @@ const TimelineItem = ({ data, index, isLastInCategory }: { data: WeekData; index
       >
         <div className="flex flex-wrap items-center gap-3 mb-4">
           <span className="font-mono text-xs tracking-widest text-muted uppercase">
-            {data.week}
+            {data.period}
           </span>
           <div className="w-1 h-1 rounded-full bg-border" />
           <span className={`inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono px-2 py-0.5 rounded-md uppercase tracking-wider border ${theme.wrapper}`}>
@@ -508,12 +508,12 @@ export function JourneyTimeline() {
               {/* Timeline Nodes - Right Side */}
               <div className="lg:w-3/4 relative pt-2">
                 <div className="space-y-8">
-                  {monthGroup.weeks.map((weekData, wIndex) => (
+                  {monthGroup.entries.map((weekData, wIndex) => (
                     <TimelineItem 
                       key={wIndex} 
                       data={weekData} 
                       index={wIndex} 
-                      isLastInCategory={wIndex === monthGroup.weeks.length - 1}
+                      isLastInCategory={wIndex === monthGroup.entries.length - 1}
                     />
                   ))}
                 </div>
