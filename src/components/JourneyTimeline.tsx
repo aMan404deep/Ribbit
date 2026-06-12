@@ -25,12 +25,14 @@ const placeholderData: MonthGroup[] = [
     weeks: [
       {
         week: "Week 1",
-        title: "Foundations & Kickoff",
+        title: "The Spark",
         type: "experience",
-        content: "Project kickoff. Defined Ribbit's core purpose and system-level requirements across frontend and backend. Initial infra discussions began.",
+        content: "It started with a simple idea from Zucky: what if we built something better? Armed with minimal resources and boundless enthusiasm, we kicked off Ribbit. We brought in hungry interns, drafted our first PRD, and started dreaming big about what this desktop app could become.",
         details: [
-          "Frontend: Defined what Ribbit should be and what problems it should solve.",
-          "Backend: High-level infra discussions and system direction finalized (core responsibilities, scaling expectations)."
+          "The inception: Zucky's vision gave our small team a shared purpose.",
+          "Bootstrapping: We decided to embrace our constraints, building a desktop app with bare-minimum resources.",
+          "Drafting the blueprint: Deep dives into features, early infra discussions, and formalizing our PRD.",
+          "The energy was palpable. We were young, scrappy, and ready to take on the world."
         ],
         docLink: {
           label: "Arch Doc: What Ribbit Is",
@@ -39,32 +41,35 @@ const placeholderData: MonthGroup[] = [
       },
       {
         week: "Week 2",
-        title: "Parallel Exploration",
+        title: "First Steps & Stumbles",
         type: "insight",
-        content: "Parallel exploration started for tech stacks, cross-platform feasibility, and DB design.",
+        content: "With our vision set, reality hit. We had to figure out how to actually build this thing across Windows, Mac, and Linux. It was a week of frantic research, late-night AI prompts for database designs, and realizing how much we didn't know.",
         details: [
-          "Frontend: Researched how to build a cross-platform desktop app (Windows, macOS, Linux).",
-          "Backend: Initial database design started using AI (ChatGPT), but faced early structural challenges and frequent revisions."
+          "The cross-platform puzzle: Diving deep into how to make a single codebase work everywhere.",
+          "Wrestling with the database: Initial designs using ChatGPT felt like walking through mud—constant revisions and structural headaches.",
+          "Learning to fail fast and pivot."
         ]
       },
       {
         week: "Week 3",
-        title: "Tech Evaluation Phase",
+        title: "Getting Our Hands Dirty",
         type: "challenge",
-        content: "Evaluated tech stacks via small demo apps and identified early structural/concurrency challenges.",
+        content: "We stopped talking and started coding. We spun up GitHub repos, scraped together every free tier and student offer we could find, and built tiny throwaway apps to test our theories. But early load tests revealed terrifying concurrency issues.",
         details: [
-          "Frontend: Evaluated tech stacks. Built small demo apps to learn and compare options.",
-          "Backend: Threading and concurrency challenges identified under high load/multi-user stress scenarios. Initial stress testing began."
+          "Scrappy beginnings: Surviving entirely on free tiers, student packs, and sheer willpower.",
+          "The demo phase: Building small throwaway apps to test and compare tech stacks.",
+          "The first scare: Initial stress tests exposed deep threading and concurrency flaws. Our hearts sank when the servers buckled."
         ]
       },
       {
         week: "Week 4",
-        title: "Final Decisions Locked",
+        title: "Locking It In",
         type: "achievement",
-        content: "Stack and infrastructure access finalized. Early infra dependencies cleared.",
+        content: "After a grueling month, we made our bets. We chose Electron.js for the frontend and began the arduous process of navigating corporate infra approvals. Getting Redis and Cursor access felt like winning a small war.",
         details: [
-          "Frontend: Finalized the stack choice: Electron.js.",
-          "Backend: Redis permission approval completed along with Cursor access approval."
+          "Placing our bets: Electron.js officially became our weapon of choice for the desktop client.",
+          "Navigating the maze: Our intro to the world of infra, DevOps, and corporate approvals. Redis was finally in.",
+          "Breathing slightly easier knowing our foundational stack was locked."
         ],
         docLink: {
           label: "Arch Doc: Tech Stack",
@@ -78,22 +83,24 @@ const placeholderData: MonthGroup[] = [
     weeks: [
       {
         week: "Week 5",
-        title: "Architecture & Core Design",
+        title: "Architecting the Dream",
         type: "experience",
-        content: "System architecture discussions across frontend and backend. Full-stack flow defined.",
+        content: "The architectural debates were intense. Frontend, backend, database—everyone had strong opinions. We pushed boundaries, becoming the first team to implement Server-Sent Events (SSE). It was exhausting but exhilarating.",
         details: [
-          "Frontend: Deep architecture discussions: frontend, backend, database, and integrations.",
-          "Backend: Cursor-assisted database redesign improved schema structure and reduced earlier design issues."
+          "Passionate debates: Architecture discussions that went back and forth for hours. We cared so much about getting it right.",
+          "Pioneering SSE: Taking a risk as the first team to implement Server-Sent Events for real-time communication.",
+          "Finding clarity: A Cursor-assisted database redesign finally cleared the fog from our earlier, flawed schemas."
         ]
       },
       {
         week: "Week 6",
-        title: "Data & Communication Layer",
+        title: "Tearing Down to Build Up",
         type: "achievement",
-        content: "Finalized data storage splits and the communication layers between client and server.",
+        content: "We realized our backend wasn't going to hold up, so we made the painful choice to refactor early. Meanwhile, we drew the hard lines on what lived locally versus what lived in the cloud. It felt like open-heart surgery on our young codebase.",
         details: [
-          "Frontend: Local vs cloud storage decisions completed. Local DB integration direction agreed.",
-          "Backend: SSE (Server-Sent Events) chosen for communication. Major backend refactor initiated for better scalability and maintainability."
+          "The great divide: Finally settling the agonizing debate over local vs. cloud storage.",
+          "The painful refactor: Stepping back to rewrite major backend components for the sake of future scalability.",
+          "Trust the process: It felt like moving backwards, but we knew it was necessary."
         ],
         docLink: {
           label: "Arch Doc: Local Persistence (SQLite)",
@@ -102,22 +109,24 @@ const placeholderData: MonthGroup[] = [
       },
       {
         week: "Week 7",
-        title: "Infrastructure Onboarding",
+        title: "Meeting the Machine",
         type: "challenge",
-        content: "DevOps rollout and infrastructure onboarding presented friction due to pending stakeholders approvals.",
+        content: "Welcome to enterprise development. We hit a wall of approvals, infosec reviews, and DevOps setups. It was frustratingly slow, but getting a soft sign-off from Infosec gave us a glimmer of hope. Also, we had to say a bittersweet goodbye to Satvik as he moved to the Noida office.",
         details: [
-          "Frontend: Finalized local database integration approach.",
-          "Backend: DevOps infrastructure setup started (GitLab, servers, RDS, CloudWatch). Multiple approvals pending (Jacob, Jayaram, Sankara)."
+          "The waiting game: DevOps setup began (GitLab, RDS), but we were stalled by pending approvals from leadership.",
+          "A glimmer of hope: A soft sign-off from Infosec meant our SSO approach wasn't completely crazy.",
+          "Team changes: Satvik relocated to the Noida office, forcing us to adapt our daily rhythms."
         ]
       },
       {
         week: "Week 8",
-        title: "Infrastructure Stabilization",
+        title: "Compromise & Growth",
         type: "experience",
-        content: "Pipeline and environment groundwork progressed alongside frontend groundwork.",
+        content: "A humbling week of learning to compromise. We realized our 'ideal' architecture clashed with what the DevOps team was used to supporting. We moved from EC2 to EKS, then to ECS. It was a masterclass in flexibility.",
         details: [
-          "Frontend: Worked out server ↔ client communication using Server-Sent Events (SSE).",
-          "Backend: Continued DevOps setup and early integration of infra components. Pipeline groundwork progressed."
+          "The reality check: Re-iterating our architecture to match DevOps realities, bouncing from EC2 to EKS to ECS.",
+          "Bridging the gap: Both our team and the infra team had to bend and learn from each other.",
+          "Nailing the connection: Server-client communication finally clicked into place."
         ],
         docLink: {
           label: "Arch Doc: Data Flow",
@@ -131,42 +140,46 @@ const placeholderData: MonthGroup[] = [
     weeks: [
       {
         week: "Week 9",
-        title: "First End-to-End Validation",
+        title: "The Prototype Nerve-Wracker",
         type: "achievement",
-        content: "Built Phase 1 UI and basic backend alignment to demonstrate product direction and feasibility.",
+        content: "The moment of truth. We slapped together our Phase 1 UI and basic backend alignment, creating our very first working prototype. Showing it to Zucky and Shweta was terrifying, but seeing the app actually 'breathe' for the first time was magical.",
         details: [
-          "Frontend: Built Phase 1 UI to demonstrate end-to-end feasibility.",
-          "Backend: Started adapting backend services to new infra setup. Initial migration and compatibility testing."
+          "It’s alive!: Building the Phase 1 UI and finally seeing end-to-end data flow.",
+          "The big reveal: Nervous heartbeats as we demoed the prototype to Zucky and Shweta.",
+          "Under the hood: Quietly wrestling with the new infra setup and compatibility testing in the background."
         ]
       },
       {
         week: "Week 10",
-        title: "Phase 1 Demo & Feedback",
+        title: "A Tough Pill to Swallow",
         type: "challenge",
-        content: "Demoed Phase 1. Core functionality validated, but UI feedback was negative and backend exposed stress points.",
+        content: "The core functionality worked, but the UI... didn't land. The internal feedback was brutally honest and mostly negative. It hurt our pride, but deep down, we knew they were right. It was time to swallow our egos and do better.",
         details: [
-          "Frontend: Demoed Phase 1 UI. Core functionality validated. UI feedback was negative.",
-          "Backend: Continued infra validation. Stability testing and concurrency issues revisited under new environment."
+          "The harsh reality: Core features worked, but the UI feedback was a wake-up call.",
+          "A mountain of feedback: Internal reviews left us with a steep climb of improvements to make.",
+          "Backend groans: Stability tests in the new environment surfaced old ghosts of concurrency issues."
         ]
       },
       {
         week: "Week 11",
-        title: "System Redesign Phase",
+        title: "Finding Our Guardian Angels",
         type: "insight",
-        content: "Revamping UI/UX while entering a formal backend Graph API security review.",
+        content: "Drowning in UI debt, we reached out for help. Aditya from the design team became our unsung hero, squeezing us in whenever he had a free moment. Simultaneously, we triggered the Eye of Sauron (Infosec) by asking for MS Graph APIs.",
         details: [
-          "Frontend: Revamped UI and UX with help from the UI team (Aditya).",
-          "Backend: Graph API security review initiated (Roman, Gururaj, Olekyendra, Furqan). Estimated duration: 1–1.5 months."
+          "The UI Savior: Aditya from design gracefully stepped in to help us out of our UX mess.",
+          "Under the microscope: Asking for MS Graph APIs initiated a massive, grueling security review.",
+          "The endless ping-pong: A frustrating but necessary back-and-forth with the security teams."
         ]
       },
       {
         week: "Week 12",
-        title: "Parallel Stabilization",
+        title: "The Waiting Game",
         type: "experience",
-        content: "Polishing frontend while the backend navigates ongoing security review and DevOps alignment.",
+        content: "We hit a strange milestone: almost all our key features were done. Everything looked great on the frontend. But we were chained to the ground by lingering environment setups and endless DevOps discussions. We had a Ferrari, but we were waiting for the road to be built.",
         details: [
-          "Frontend: Continued UI polish and usability improvements based on feedback.",
-          "Backend: Parallel progress on security review + DevOps coordination. Multiple back-and-forth discussions."
+          "The feature plateau: A bittersweet moment—core features were done, but we were blocked by environment setups.",
+          "Polishing the chrome: Spending our nervous energy refining the UI while waiting on approvals.",
+          "The DevOps dance: Endless coordination and alignment meetings to get the infra ready."
         ]
       }
     ]
@@ -176,42 +189,46 @@ const placeholderData: MonthGroup[] = [
     weeks: [
       {
         week: "Week 13",
-        title: "Infra Migration Begins",
+        title: "Lost in Translation",
         type: "challenge",
-        content: "Backend infra migration into new DevOps setup. Frontend continued addressing UX feedback.",
+        content: "If last week was a waiting game, this week was a game of telephone. Communication delays between us and DevOps caused endless friction. They made changes, we made changes, things broke. We desperately tried to find rhythm while designing our notification system.",
         details: [
-          "Frontend: Designed notification behavior. Explored scheduling and periodic delivery.",
-          "Backend: Ongoing DevOps and security coordination. GitLab instance configuration issues and alignment discussions."
+          "Communication breakdown: Misalignments and delays as we tried to sync our code with DevOps' changes.",
+          "Frustration mounts: Struggling with GitLab configuration issues that slowed us to a crawl.",
+          "A creative escape: Pouring our frustration into designing a robust, cross-platform notification scheduling system."
         ]
       },
       {
         week: "Week 14",
-        title: "Pipeline Stabilization",
+        title: "Smoothing the Rough Edges",
         type: "experience",
-        content: "Securing deployment pipelines and ironing out OS-specific notification behavior.",
+        content: "Slowly, painfully, the chaotic pipelines started to solidify. We finally got permissions sorted and environments consistent. On the frontend, getting notifications to behave perfectly across Mac, Windows, and Linux felt like wrestling a three-headed dog.",
         details: [
-          "Frontend: Implemented scheduled notifications across Windows, macOS, and Linux.",
-          "Backend: Infra stabilization phase. Fixes around deployment pipelines, permissions, and environment consistency."
+          "Calming the storm: Deployment pipelines finally started behaving predictably.",
+          "The OS puzzle: Taming the wild beasts of Windows, macOS, and Linux native notifications.",
+          "Finding our footing: The infrastructure finally felt like something we could stand on."
         ]
       },
       {
         week: "Week 15",
-        title: "System Hardening",
+        title: "Fortifying the Castle",
         type: "insight",
-        content: "Designing persistent screen behaviors for frontend while the backend stabilizes under security constraints.",
+        content: "The security reviews raged on, forcing us to harden every inch of our backend. We matched that intensity on the frontend by building 'lockdown' features and persistent alerts. The app was no longer just a tool; it was becoming a fortress.",
         details: [
-          "Frontend: Implemented persistent alerts and screen lockdown for a selected period.",
-          "Backend: Continued Graph API security review + backend infra hardening. System gradually stabilized."
+          "Security by fire: The relentless Graph API review forced us to build an incredibly resilient backend.",
+          "Lockdown mode: Implementing persistent alerts and screen takeovers that commanded the user's attention.",
+          "A sense of security: The system was finally becoming stable under immense scrutiny."
         ]
       },
       {
         week: "Week 16",
-        title: "Stability Milestone",
+        title: "The Clouds Part",
         type: "achievement",
-        content: "A major resolution phase. Reduced deployment instability and stabilized OS-level behaviors.",
+        content: "Finally, a breakthrough. The endless feedback loops with DevOps and Security finally closed. The infrastructure held firm. Even Linux, our most stubborn OS child, finally played nice with our notifications. For the first time, we could breathe.",
         details: [
-          "Frontend: Stabilized persistent alerts. Addressed remaining OS differences, especially on Linux.",
-          "Backend: Major resolution phase for DevOps/security feedback loops. Reduced instability and finalized key infra behavior."
+          "Closing the loops: Surmounting the mountain of DevOps and InfoSec feedback.",
+          "Taming the Penguin: Finally fixing the last, stubborn OS quirks on Linux.",
+          "A quiet victory: The overwhelming sense of relief as the foundational instability melted away."
         ]
       }
     ]
@@ -221,42 +238,46 @@ const placeholderData: MonthGroup[] = [
     weeks: [
       {
         week: "Week 17",
-        title: "Feature Expansion Begins",
+        title: "The Relentless March",
         type: "experience",
-        content: "Labels system introduced along with supporting schema updates and APIs.",
+        content: "We refused to be slowed down by the final, dragging stages of the Graph API review. We put our heads down and kept delivering. We pushed out a whole new Labeling system. The momentum was intoxicating; nothing could stop us from building Ribbit.",
         details: [
-          "Frontend: Added labels system and supporting UI.",
-          "Backend: Final stages of Graph API security review. Addressed remaining security concerns and compliance adjustments."
+          "Unstoppable momentum: Delivering bi-weekly features despite crushing administrative overhead.",
+          "Organizing the chaos: Shipping a complex Labeling system across the full stack.",
+          "The finish line in sight: Wrapping up the very last remnants of the grueling security compliance checks."
         ]
       },
       {
         week: "Week 18",
-        title: "Group System Development",
+        title: "Bringing People Together",
         type: "achievement",
-        content: "Implemented group workflows, logics, and privacy access controls.",
+        content: "Ribbit was evolving from a single-user tool into a true collaborative platform. Building the Groups system challenged us to think deeply about workflows and UI. Behind the scenes, the deployment flow finally became a boring, predictable routine—which is exactly what you want.",
         details: [
-          "Frontend: Added groups. Designed group flows and updated UI.",
-          "Backend: DevOps and backend integration refinement. Ensured production readiness and consistent deployment flow."
+          "The social fabric: Designing and shipping complex Group workflows and user interfaces.",
+          "Boring is beautiful: Achieving a production-ready, flawlessly consistent deployment pipeline.",
+          "A maturing application: We were no longer building a prototype; we were building an enterprise tool."
         ]
       },
       {
         week: "Week 19",
-        title: "Privacy & Approvals",
+        title: "The Final Stamps",
         type: "experience",
-        content: "Group privacy access controls implemented and final stakeholder validations were achieved.",
+        content: "We tackled the nerve-wracking complexity of group privacy and access controls. But the real triumph of the week was hearing those magic words: 'Approved.' Key stakeholders gave their final validations, and our turbulent backend was officially deemed 'stable.'",
         details: [
-          "Frontend: Implemented group privacy access controls.",
-          "Backend: Approvals and final validations completed across stakeholders. Backend system considered near-stable."
+          "The privacy maze: Carefully engineering foolproof access controls for our new Groups feature.",
+          "The 'Approved' stamp: Surpassing the final, massive hurdles of stakeholder validation.",
+          "A solid foundation: The backend, after months of chaos, was finally at peace."
         ]
       },
       {
         week: "Week 20",
-        title: "Forms & System Consolidation",
+        title: "Polishing the Diamond",
         type: "insight",
-        content: "Form builder introduced while backend focused on cleanup and readiness for product integrations.",
+        content: "With everything stable, we added the cherry on top: a dynamic form builder. While the frontend team ran wild with question types and UIs, the backend team operated like janitors, cleaning up edge cases and polishing the infrastructure until it shone.",
         details: [
-          "Frontend: Added forms with different question types.",
-          "Backend: Full backend stabilization. Cleanup of infra edge cases and readiness for product-level integrations."
+          "The creative sprint: Building a dynamic, multi-question form builder to cap off our feature set.",
+          "The deep clean: Eradicating edge cases and sweeping up technical debt in the backend.",
+          "Ready for the big leagues: The system was completely primed for real-world product integration."
         ]
       }
     ]
@@ -266,22 +287,24 @@ const placeholderData: MonthGroup[] = [
     weeks: [
       {
         week: "Week 21",
-        title: "Optimization & Acceleration",
+        title: "Need for Speed",
         type: "achievement",
-        content: "Testing acceleration features completed. Focus shifted to speeding up iteration cycles.",
+        content: "We realized our testing cycles were too slow. So, we stopped building for the users for a moment, and built for ourselves. Creating 'signal cloning' was a game-changer; suddenly, what took minutes of manual setup took seconds. We were flying.",
         details: [
-          "Frontend (Jun 1–7): Implemented signal cloning to speed up testing and iteration.",
-          "Backend (Jun 1–7): Backend support for signal cloning feature enabled to accelerate testing cycles."
+          "Sharpening our tools: Halting feature work to build internal tools that dramatically sped up our workflow.",
+          "The cloning breakthrough: Implementing full-stack data cloning to bypass agonizing manual test setups.",
+          "The power of iteration: Feeling the immediate rush of moving twice as fast."
         ]
       },
       {
         week: "Week 22",
-        title: "Updates & Release Readiness",
+        title: "The Launchpad",
         type: "experience",
-        content: "Release pipeline and app update infrastructure completed and aligned for production rollout.",
+        content: "This is it. The final stretch. We stared down the terrifying reality of auto-updates across Mac, Windows, and Linux. The release pipelines are humming, the final coordination is happening, and we're standing on the precipice of v1.0. We are exhausted, but we've never been prouder.",
         details: [
-          "Frontend (Jun 8–12): Designed and implemented app updates for all three operating systems (in progress as of Jun 12).",
-          "Backend (Jun 8–12): Backend support for app update system across Windows/macOS/Linux. Final coordination for release pipeline in progress."
+          "The Auto-Update beast: Wrestling with the immense complexity of seamless cross-platform app updates.",
+          "All systems go: The backend and frontend aligning perfectly for the final release pipeline orchestration.",
+          "The eve of launch: A profound sense of exhaustion mixed with the undeniable thrill of seeing our creation ready for the world."
         ],
         docLink: {
           label: "Arch Doc: Auto-Update",
