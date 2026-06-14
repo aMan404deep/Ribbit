@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
-import { Plus, Minus, AlertCircle, CheckCircle2, Lightbulb, Compass, ArrowRight, Activity, ExternalLink } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Plus, Minus, AlertCircle, CheckCircle2, Lightbulb, Compass, ExternalLink, X, Map as MapIcon, Flag, Target, Zap, Rocket } from 'lucide-react';
 
 interface TimelineEntry {
   period: string;
@@ -27,9 +27,9 @@ const placeholderData: MonthGroup[] = [
         period: "Update 1",
         title: "The Spark",
         type: "experience",
-        content: "It started with a simple idea from Zucky: what if we built something better? Armed with minimal resources and boundless enthusiasm, we kicked off Ribbit. We brought in hungry interns, drafted our first PRD, and started dreaming big about what this desktop app could become.",
+        content: "It started with a simple idea from the HR team: what if we built something better? Armed with minimal resources and boundless enthusiasm, we kicked off Ribbit. We brought in hungry interns, drafted our first PRD, and started dreaming big about what this desktop app could become.",
         details: [
-          "The inception: Zucky's vision gave our small team a shared purpose.",
+          "The inception: The HR team's vision gave our small team a shared purpose.",
           "Bootstrapping: We decided to embrace our constraints, building a desktop app with bare-minimum resources.",
           "Drafting the blueprint: Deep dives into features, early infra discussions, and formalizing our PRD.",
           "The energy was palpable. We were young, scrappy, and ready to take on the world."
@@ -115,13 +115,13 @@ const placeholderData: MonthGroup[] = [
         period: "Update 7",
         title: "Meeting the Machine & The First Prototype",
         type: "achievement",
-        content: "Welcome to enterprise development. We hit a wall of approvals and DevOps setups, and said a bittersweet goodbye to Satvik as he moved to Noida. Despite this, we slapped together our Phase 1 UI and basic backend alignment, creating our first working prototype. Showing it to Zucky and Shweta was terrifying, but seeing the app actually breathe was magical.",
+        content: "Welcome to enterprise development. We hit a wall of approvals and DevOps setups, and said a bittersweet goodbye to Satvik as he moved to Noida. Despite this, we slapped together our Phase 1 UI and basic backend alignment, creating our first working prototype. Showing it to the HR team and Shweta was terrifying, but seeing the app actually breathe was magical.",
         details: [
           "The waiting game: DevOps setup began (GitLab, RDS), but we were stalled by pending approvals from leadership.",
           "A glimmer of hope: A soft sign-off from Infosec meant our SSO approach wasn't completely crazy.",
           "Team changes: Satvik relocated to the Noida office, forcing us to adapt our daily rhythms.",
           "It’s alive!: Building the Phase 1 UI and seeing end-to-end data flow.",
-          "The big reveal: Nervous heartbeats as we demoed the prototype to Zucky and Shweta."
+          "The big reveal: Nervous heartbeats as we demoed the prototype to the HR team and Shweta."
         ]
       },
       {
@@ -343,223 +343,379 @@ const placeholderData: MonthGroup[] = [
   }
 ];
 
+// Flatten data
+const flattenedEntries = placeholderData.flatMap(mg => 
+  mg.entries.map(e => ({ ...e, month: mg.month }))
+).map((e, i) => ({ ...e, globalIndex: i }));
+
 const getThemeForType = (type: string) => {
   switch (type) {
     case 'challenge':
       return { 
-        text: "text-[#EF4444]", 
-        bg: "bg-[#EF4444]",
-        wrapper: "border-[#EF4444]/30 bg-[#EF4444]/5 text-[#EF4444]",
-        icon: <AlertCircle className="w-4 h-4" /> 
+        text: "text-accent", 
+        bg: "bg-accent",
+        wrapper: "border-accent/30 bg-accent/10 text-accent",
+        icon: <AlertCircle className="w-5 h-5" /> 
       };
     case 'achievement':
       return { 
-        text: "text-[#10B981]", 
-        bg: "bg-[#10B981]",
-        wrapper: "border-[#10B981]/30 bg-[#10B981]/5 text-[#10B981]",
-        icon: <CheckCircle2 className="w-4 h-4" /> 
+        text: "text-primary", 
+        bg: "bg-primary",
+        wrapper: "border-primary/30 bg-primary/10 text-primary",
+        icon: <CheckCircle2 className="w-5 h-5" /> 
       };
     case 'insight':
       return { 
-        text: "text-[#3B82F6]", 
-        bg: "bg-[#3B82F6]",
-        wrapper: "border-[#3B82F6]/30 bg-[#3B82F6]/5 text-[#3B82F6]",
-        icon: <Lightbulb className="w-4 h-4" /> 
+        text: "text-firefly", 
+        bg: "bg-firefly",
+        wrapper: "border-firefly/30 bg-firefly/10 text-firefly",
+        icon: <Lightbulb className="w-5 h-5" /> 
       };
     case 'experience':
     default:
       return { 
-        text: "text-muted",
+        text: "text-foreground",
         bg: "bg-muted",
-        wrapper: "border-border bg-card text-muted", 
-        icon: <Compass className="w-4 h-4" /> 
+        wrapper: "border-border bg-card text-foreground", 
+        icon: <Compass className="w-5 h-5" /> 
       };
   }
 };
 
-const TimelineItem = ({ data, index, isLastInCategory }: { data: TimelineEntry; index: number; isLastInCategory: boolean; key?: number | string }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const theme = getThemeForType(data.type);
+const MapBackground = () => (
+  <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+    {/* Base gentle tint */}
+    <div className="absolute inset-0 bg-[#D4C4A8]/10 dark:bg-[#D4C4A8]/5" />
+    
+    {/* Vintage Map / Topography Pattern */}
+    <svg className="absolute inset-0 w-full h-full opacity-[0.15] dark:opacity-[0.1] text-primary" xmlns="http://www.w3.org/2000/svg">
+      <pattern id="treasure-map" width="400" height="400" patternUnits="userSpaceOnUse">
+         {/* Stylized Waves */}
+         <path d="M 40,50 Q 55,35 70,50 T 100,50" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+         <path d="M 40,65 Q 55,50 70,65 T 100,65" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+         
+         <path d="M 300,320 Q 315,305 330,320 T 360,320" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+         
+         {/* Sea Monster / Serpent loops */}
+         <path d="M 220,120 Q 240,90 260,120 T 300,120" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" strokeLinecap="round" />
+         <circle cx="260" cy="110" r="3" fill="currentColor" />
+         
+         {/* Stylized Mountains */}
+         <path d="M 80,250 L 110,210 L 140,250 L 170,220 L 210,260" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+         <path d="M 110,210 L 120,230 L 105,235" fill="none" stroke="currentColor" strokeWidth="1" />
+         <path d="M 170,220 L 175,235 L 165,240" fill="none" stroke="currentColor" strokeWidth="1" />
+
+         {/* Dotted Trails */}
+         <path d="M 150,80 C 200,100 180,180 120,160 C 50,140 20,200 40,220" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="8 8" strokeLinecap="round" />
+         
+         <path d="M 340,180 Q 360,160 380,180" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#treasure-map)" />
+    </svg>
+
+    {/* Big abstract continents (shadow blobs) to make it feel like landmasses */}
+    <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[60vh] bg-primary rounded-[50%_40%_60%_30%] blur-[80px] opacity-[0.05] dark:opacity-[0.03]" />
+    <div className="absolute bottom-[-10%] right-[-5%] w-[60vw] h-[50vh] bg-primary rounded-[40%_60%_70%_30%] blur-[100px] opacity-[0.05] dark:opacity-[0.03]" />
+    
+    {/* Compass Rose */}
+    <div className="absolute top-[5%] right-[5%] xl:top-[10%] xl:right-[15%] opacity-[0.1] mix-blend-multiply dark:mix-blend-overlay">
+      <Compass strokeWidth={0.5} className="w-[300px] h-[300px] xl:w-[500px] xl:h-[500px] text-primary" />
+    </div>
+    
+    {/* Map Decorations (No Text) */}
+    <div className="absolute top-[20%] left-[10%] opacity-[0.2] mix-blend-multiply dark:mix-blend-overlay">
+       <X strokeWidth={2} className="w-16 h-16 xl:w-24 xl:h-24 text-primary" />
+    </div>
+    
+    <div className="absolute bottom-[30%] left-[15%] opacity-[0.1] mix-blend-multiply dark:mix-blend-overlay">
+       <div className="flex gap-4">
+          <div className="w-8 h-8 rounded-full border-2 border-dashed border-primary" />
+          <div className="w-8 h-8 rounded-full border-2 border-dashed border-primary" />
+       </div>
+    </div>
+
+    <div className="absolute top-[60%] right-[20%] opacity-[0.15] mix-blend-multiply dark:mix-blend-overlay">
+        <MapIcon strokeWidth={1} className="w-32 h-32 xl:w-48 xl:h-48 text-primary" />
+    </div>
+  </div>
+);
+
+const MapNode = ({ entry, total, isVisited, onClick }: { entry: typeof flattenedEntries[0], total: number, isVisited: boolean, onClick: () => void }) => {
+  // Use a combination of sine waves to create a natural meandering path.
+  const getX = (index: number) => {
+    // scale index slightly to make waves
+    const v = Math.sin(index * 0.7) + 0.5 * Math.sin(index * 0.3); 
+    return 50 + (v / 1.5) * 35; // Value between 15% and 85%
+  };
+
+  const x = getX(entry.globalIndex);
+  const nextX = entry.globalIndex < total - 1 ? getX(entry.globalIndex + 1) : null;
+  const theme = getThemeForType(entry.type);
+
+  const labelSide = x > 50 ? 'left' : 'right';
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ 
-        duration: 0.5, 
-        ease: "easeOut",
-        delay: index * 0.1 
-      }}
-      className="relative pl-10 md:pl-16 group"
-    >
-      {/* Dynamic Connecting Line */}
-      {!isLastInCategory && (
-        <div className="absolute left-[3px] md:left-[23px] top-[40px] bottom-[-40px] w-px bg-border z-0" />
+    <div className="relative w-full h-32 md:h-40 flex items-center justify-center -my-2 group/node">
+      {/* Connector Path */}
+      {nextX !== null && (
+        <svg 
+           className="absolute top-1/2 left-0 w-full h-full pointer-events-none z-0" 
+           viewBox="0 0 100 100" 
+           preserveAspectRatio="none"
+        >
+          <path 
+            d={`M ${x} 0 C ${x} 50, ${nextX} 50, ${nextX} 100`} 
+            fill="none" 
+            className="text-primary/30"
+            style={{ stroke: 'currentColor', strokeWidth: '3px', strokeLinecap: 'round', vectorEffect: 'non-scaling-stroke', strokeDasharray: '8 12' }}
+          />
+        </svg>
       )}
 
-      {/* Node Icon container */}
-      <div className="absolute left-[-13px] md:left-[7px] top-[18px] w-8 h-8 rounded-xl bg-card border border-border flex items-center justify-center z-10 shadow-sm transition-transform duration-300 group-hover:scale-110">
-         <div className={`w-2.5 h-2.5 rounded-full ${theme.bg}`} />
-      </div>
-
-      {/* Content Card */}
-      <div 
-        className="cursor-pointer block relative -ml-4 p-6 rounded-[16px] bg-background border border-border hover:shadow-md transition-shadow"
-        onClick={() => setIsOpen(!isOpen)}
+      {/* Checkpoint Node */}
+      <motion.div 
+        initial={{ scale: 0, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        viewport={{ once: true, margin: "-10%" }}
+        transition={{ type: "spring", stiffness: 200, damping: 15 }}
+        className="absolute z-10 flex flex-col items-center justify-center cursor-pointer"
+        style={{ left: `${x}%`, transform: 'translateX(-50%)' }}
+        onClick={onClick}
       >
-        <div className="flex flex-wrap items-center gap-3 mb-4">
-          <span className="font-mono text-xs tracking-widest text-muted uppercase">
-            {data.period}
-          </span>
-          <div className="w-1 h-1 rounded-full bg-border" />
-          <span className={`inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono px-2 py-0.5 rounded-md uppercase tracking-wider border ${theme.wrapper}`}>
+        <div className="relative w-14 h-14 md:w-16 md:h-16 group-hover/node:scale-110 transition-all duration-300 z-10 flex items-center justify-center">
+          {/* Diamond Backdrop */}
+          <div className="absolute inset-1 rotate-45 bg-card border-2 border-primary/30 shadow-[0_0_15px_rgba(0,0,0,0.1)] group-hover/node:border-primary/70 transition-colors duration-300" />
+          <div className={`absolute inset-2 rotate-45 border border-primary/10 ${theme.bg} opacity-20`} />
+          
+          {/* Pulsing ring if unvisited */}
+          {!isVisited && (
+            <div className="absolute inset-1 rotate-45 border border-primary/40 animate-ping opacity-50" />
+          )}
+          
+          <div className="absolute inset-1 rotate-45 bg-primary/5 opacity-0 group-hover/node:opacity-100 transition-opacity duration-300" />
+          
+          <div className={`relative z-10 ${theme.text} drop-shadow-md`}>
             {theme.icon}
-            {data.type}
-          </span>
+          </div>
         </div>
 
-        <h3 className="text-xl font-semibold mb-2 text-foreground transition-colors group-hover:text-primary">
-          {data.title}
-        </h3>
-        
-        <p className="text-muted leading-relaxed">
-          {data.content}
-        </p>
-
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
-          {data.details && data.details.length > 0 && (
-            <div className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground">
-              <span className="p-1 rounded bg-card border border-border">
-                {isOpen ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
-              </span>
-              {isOpen ? "Hide details" : "Show details"}
-            </div>
-          )}
-
-          {data.docLink && (
-            <a
-              href={data.docLink.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors ml-auto px-3 py-1.5 rounded bg-primary/5 border border-primary/20 hover:bg-primary/10"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {data.docLink.label}
-              <ExternalLink className="w-3 h-3 ml-0.5" />
-            </a>
-          )}
+        {/* Label (floating left or right) */}
+        <div className={`absolute top-1/2 -translate-y-1/2 ${labelSide === 'left' ? 'right-[calc(100%+0.5rem)] text-right items-end' : 'left-[calc(100%+0.5rem)] text-left items-start'} flex flex-col w-40 md:w-56 pointer-events-none`}>
+          {/* Connector line */}
+          <div className={`absolute top-1/2 -translate-y-1/2 w-4 h-0.5 bg-primary/30 ${labelSide === 'left' ? 'right-[-1.2rem]' : 'left-[-1.2rem]'}`} />
+          
+          <div className={`bg-card/95 backdrop-blur-md px-4 py-3 rounded-xl border border-primary/20 shadow-lg pointer-events-auto transition-transform duration-300 group-hover/node:-translate-y-1 group-hover/node:border-primary/50 relative ${labelSide === 'left' ? 'ml-auto' : 'mr-auto'}`}>
+             <div className="flex flex-col gap-1">
+               <span className={`text-[10px] md:text-xs font-mono uppercase tracking-[0.15em] font-bold ${theme.text}`}>{entry.period}</span>
+               <span className="text-sm md:text-base font-bold text-foreground leading-snug tracking-tight">{entry.title}</span>
+             </div>
+          </div>
         </div>
+      </motion.div>
+    </div>
+  );
+};
 
-        <AnimatePresence>
-          {isOpen && data.details && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="overflow-hidden"
-            >
-              <div className="pt-4 mt-6 border-t border-border">
-                <ul className="space-y-3">
-                  {data.details.map((detail, idx) => (
-                    <li key={idx} className="flex gap-3 items-start text-muted">
-                      <div className="w-5 h-5 rounded bg-card border border-border flex items-center justify-center shrink-0 mt-0.5">
-                        <span className="text-[10px] font-mono">{idx + 1}</span>
-                      </div>
-                      <span className="leading-relaxed text-sm pt-[2px]">{detail}</span>
-                    </li>
-                  ))}
-                </ul>
+const DetailsPanel = ({ selectedEntry, onClose }: { selectedEntry: typeof flattenedEntries[0], onClose: () => void }) => {
+  const theme = getThemeForType(selectedEntry.type);
+  const [panelWidth, setPanelWidth] = useState(480);
+  const [isResizing, setIsResizing] = useState(false);
+
+  // Resize logic
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsResizing(true);
+    const startX = e.clientX;
+    const startWidth = panelWidth;
+
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      const deltaX = startX - moveEvent.clientX; 
+      const newWidth = Math.min(Math.max(startWidth + deltaX, 320), window.innerWidth * 0.9, 1000);
+      setPanelWidth(newWidth);
+    };
+
+    const onMouseUp = () => {
+      setIsResizing(false);
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  };
+
+  return (
+    <>
+      {/* Overlay */}
+      <motion.div 
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{ opacity: 0 }}
+         transition={{ duration: 0.3 }}
+         onClick={onClose}
+         className="fixed inset-0 bg-background/40 backdrop-blur-sm z-[90]"
+      />
+
+      {/* Side Panel */}
+      <motion.div
+        key="sidepanel"
+        initial={{ x: '100%' }}
+        animate={{ x: 0 }}
+        exit={{ x: '100%' }}
+        transition={{ type: "spring", damping: 30, stiffness: 300 }}
+        style={{ width: panelWidth }}
+        className="fixed top-0 right-0 bottom-0 z-[100] max-w-[90vw] bg-card border-l border-border flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.2)]"
+      >
+         {/* Drag Handle */}
+         <div 
+           className={`absolute left-0 top-0 bottom-0 w-2 group cursor-col-resize z-50 flex items-center justify-center ${isResizing ? 'bg-primary/20' : 'hover:bg-primary/10'} transition-colors`}
+           onMouseDown={handleMouseDown}
+         >
+           <div className={`w-1 h-12 rounded-full ${isResizing ? 'bg-primary' : 'bg-border group-hover:bg-primary/50'} transition-colors`} />
+         </div>
+
+         {/* Header */}
+         <div className={`p-6 md:p-10 border-b relative ${theme.wrapper} bg-opacity-20`}>
+            {/* Background gradient overlay for nicer tint */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${theme.bg} opacity-10 pointer-events-none`} />
+            
+            <button onClick={onClose} className="p-2.5 bg-background/50 backdrop-blur-md hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors absolute top-6 right-6 z-20 focus:outline-none border border-border/50">
+               <X className="w-5 h-5 text-foreground" />
+            </button>
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-6">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${theme.bg} text-white/90 shadow-sm`}>
+                  {theme.icon}
+                </div>
+                <span className={`font-mono text-xs font-bold tracking-widest uppercase ${theme.text}`}>{selectedEntry.period}</span>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.div>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground pr-12 leading-tight tracking-tight">{selectedEntry.title}</h3>
+              <div className="flex items-center gap-2 text-sm font-semibold opacity-75 uppercase tracking-widest text-muted-foreground">
+                <Target className="w-4 h-4" />
+                {selectedEntry.month}
+              </div>
+            </div>
+         </div>
+         
+         {/* Scrollable Content */}
+         <div className="p-6 md:p-10 space-y-8 overflow-y-auto relax-scroll flex-1 relative bg-background/50">
+            <p className="text-xl leading-relaxed text-foreground/90 font-medium">
+               {selectedEntry.content}
+            </p>
+            
+            {selectedEntry.details && (
+              <div className="space-y-4 pt-8 border-t border-border/50">
+                <h4 className="font-bold text-sm tracking-widest text-muted-foreground uppercase flex items-center gap-2">
+                   <Zap className="w-4 h-4 text-primary" /> Key Moments
+                </h4>
+                <div className="grid gap-4 mt-4">
+                  {selectedEntry.details.map((d, i) => (
+                    <div key={i} className="flex gap-4 p-5 rounded-2xl bg-card border border-border shadow-sm hover:border-primary/30 transition-colors">
+                       <div className={`w-8 h-8 rounded-full ${theme.wrapper} flex items-center justify-center shrink-0`}>
+                          <span className={`text-xs font-mono font-bold ${theme.text}`}>{i+1}</span>
+                       </div>
+                       <span className="text-base leading-relaxed text-foreground/80">{d}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {selectedEntry.docLink && (
+              <div className="pt-8">
+                <a
+                  href={selectedEntry.docLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 px-6 py-4 bg-primary text-primary-foreground font-bold rounded-2xl hover:bg-primary/90 transition-all shadow-sm w-full sm:w-auto hover:shadow-md hover:-translate-y-0.5"
+                >
+                  <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  {selectedEntry.docLink.label}
+                </a>
+              </div>
+            )}
+         </div>
+      </motion.div>
+    </>
   );
 };
 
 export function JourneyTimeline() {
+  const [selectedEntry, setSelectedEntry] = useState<typeof flattenedEntries[0] | null>(null);
+  const [visitedNodes, setVisitedNodes] = useState<number[]>([]);
+
+  // Prevent scrolling when modal is open
+  useEffect(() => {
+    if (selectedEntry) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; }
+  }, [selectedEntry]);
+
   return (
-    <section id="journey" className="py-24 bg-card border-y border-border">
-      <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-10">
+    <section id="journey" className="py-24 bg-background border-y border-border relative min-h-screen overflow-hidden">
+      {/* Background Decor */}
+      <MapBackground />
+
+      <div className="w-full max-w-5xl mx-auto px-6 relative z-10">
         
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">The Journey</h2>
-          <p className="text-lg text-muted">
-            From a conceptual wireframe to a production-ready application. A transparent look at our architecture choices, failures, and breakthroughs.
-          </p>
-        </div>
+        {/* Map Container */}
+        <div className="w-full">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">The Journey</h2>
+            <p className="text-lg text-muted leading-relaxed max-w-2xl mx-auto">
+              From a conceptual wireframe to a production-ready application. Click on any checkpoint to view our struggles, planning, and achievements throughout the journey.
+            </p>
+          </div>
 
-        <div className="space-y-16 lg:space-y-24 max-w-5xl mx-auto">
-          {placeholderData.map((monthGroup, mIndex) => (
-            <div key={mIndex} className="flex flex-col lg:flex-row gap-8 lg:gap-16 relative">
-              
-              {/* Sticky Month - Left Side */}
-              <div className="lg:w-1/4 shrink-0">
-                <div className="sticky top-32">
-                  <span className="font-mono text-muted tracking-widest uppercase text-xs mb-2 block">
-                    {mIndex + 1 < 10 ? `0${mIndex + 1}` : mIndex + 1} / 06
-                  </span>
-                  <h3 className="text-2xl font-semibold text-foreground">{monthGroup.month}</h3>
-                </div>
-              </div>
-
-              {/* Timeline Nodes - Right Side */}
-              <div className="lg:w-3/4 relative pt-2">
-                <div className="space-y-8">
-                  {monthGroup.entries.map((weekData, wIndex) => (
-                    <TimelineItem 
-                      key={wIndex} 
-                      data={weekData} 
-                      index={wIndex} 
-                      isLastInCategory={wIndex === monthGroup.entries.length - 1}
-                    />
-                  ))}
-                </div>
-              </div>
-
-            </div>
-          ))}
-        </div>
-
-        {/* Architecture Documents Section */}
-        <div className="mt-24 md:mt-32 max-w-5xl mx-auto border-t border-border pt-12 md:pt-16">
-          <div className="bg-background rounded-2xl border border-border p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 relative overflow-hidden group">
-            {/* Background Accent */}
-            <div className="absolute top-[-50%] right-[-5%] w-[40%] h-[200%] bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-500 pointer-events-none" />
-            
-            <div className="relative z-10 flex-1">
-              <h4 className="text-2xl font-bold mb-3 text-foreground">Deep Dive into the Architecture</h4>
-              <p className="text-muted text-base max-w-xl leading-relaxed">
-                Explore the comprehensive technical documentation outlining our system design, core infrastructure choices, and the underlying rationale behind the project.
-              </p>
+          <div className="relative py-4">
+            {/* Start Point */}
+            <div className="flex flex-col items-center justify-center mb-4">
+               <div className="w-20 h-20 bg-card rounded-full border-4 border-border flex items-center justify-center shadow-lg relative z-20">
+                 <Flag className="w-8 h-8 text-primary" />
+               </div>
+               <p className="mt-4 font-mono font-bold tracking-widest text-primary uppercase">The Beginning</p>
+               <p className="text-sm text-muted">Jan 2026</p>
             </div>
 
-            <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-              <a
-                href="https://pragmaticplay.atlassian.net/wiki/x/BIAzUQE"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary-hover shadow-sm transition-all hover:shadow hover:-translate-y-0.5 w-full sm:w-auto min-w-[220px]"
-              >
-                Frontend Architecture
-                <ExternalLink className="w-4 h-4 ml-1 opacity-90" />
-              </a>
-              <a
-                href="https://pragmaticplay.atlassian.net/wiki/x/IYBCUQE"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-card border border-border text-foreground font-semibold rounded-lg hover:bg-muted/10 shadow-sm transition-all hover:shadow hover:-translate-y-0.5 w-full sm:w-auto min-w-[220px]"
-              >
-                Backend Architecture
-                <ExternalLink className="w-4 h-4 ml-1 opacity-90" />
-              </a>
+            {/* Nodes */}
+            <div className="relative isolate pt-4 pb-4">
+               {flattenedEntries.map((entry, index) => (
+                 <MapNode 
+                   key={index} 
+                   entry={entry} 
+                   total={flattenedEntries.length} 
+                   isVisited={visitedNodes.includes(entry.globalIndex)}
+                   onClick={() => {
+                     setSelectedEntry(entry);
+                     if (!visitedNodes.includes(entry.globalIndex)) {
+                       setVisitedNodes(prev => [...prev, entry.globalIndex]);
+                     }
+                   }} 
+                 />
+               ))}
+            </div>
+
+            {/* End Point */}
+            <div className="flex flex-col items-center justify-center mt-4">
+               <div className="w-24 h-24 bg-primary rounded-full border-4 border-primary/20 flex items-center justify-center shadow-primary/50 shadow-2xl relative z-20">
+                 <Rocket className="w-10 h-10 text-primary-foreground" />
+               </div>
+               <p className="mt-6 font-mono font-bold tracking-widest text-primary text-xl uppercase">v1.0 Ready</p>
+               <p className="text-sm text-muted">June 2026</p>
             </div>
           </div>
         </div>
-
       </div>
+
+      <AnimatePresence>
+        {selectedEntry && (
+          <DetailsPanel selectedEntry={selectedEntry} onClose={() => setSelectedEntry(null)} />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
