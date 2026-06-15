@@ -25,14 +25,15 @@ const placeholderData: MonthGroup[] = [
     entries: [
       {
         period: "Update 1",
-        title: "The Spark",
+        title: "Project Kickoff",
         type: "experience",
-        content: "It started with a simple idea from the HR team: what if we built something better? Armed with minimal resources and boundless enthusiasm, we kicked off Ribbit. We brought in hungry interns, drafted our first PRD, and started dreaming big about what this desktop app could become.",
+        content: "Ribbit began as an initiative from the HR team to improve employee communication and engagement through a dedicated desktop application. With a small team and limited resources, we started defining the product vision, identifying key use cases, and preparing the initial roadmap.",
         details: [
-          "The inception: The HR team's vision gave our small team a shared purpose.",
-          "Bootstrapping: We decided to embrace our constraints, building a desktop app with bare-minimum resources.",
-          "Drafting the blueprint: Deep dives into features, early infra discussions, and formalizing our PRD.",
-          "The energy was palpable. We were young, scrappy, and ready to take on the world."
+          "Defined the initial product vision and objectives.",
+          "Prepared the first Product Requirements Document (PRD).",
+          "Evaluated possible technical approaches and infrastructure needs.",
+          "Onboarded interns and established the core development team.",
+          "Key Learning: Clear problem definition early in the project helped align technical and business goals."
         ],
         docLink: {
           label: "Arch Doc: What Ribbit Is",
@@ -41,35 +42,41 @@ const placeholderData: MonthGroup[] = [
       },
       {
         period: "Update 2",
-        title: "First Steps & Stumbles",
+        title: "Research & Discovery",
         type: "insight",
-        content: "With our vision set, reality hit. We had to figure out how to actually build this thing across Windows, Mac, and Linux. It was a period of frantic research, late-night AI prompts for database designs, and realizing how much we didn't know.",
+        content: "As implementation planning began, we focused on understanding the challenges of building a desktop application that would work consistently across Windows, macOS, and Linux. This phase involved significant research into application architecture, deployment strategies, and data management.",
         details: [
-          "The cross-platform puzzle: Diving deep into how to make a single codebase work everywhere.",
-          "Wrestling with the database: Initial designs using ChatGPT felt like walking through mud—constant revisions and structural headaches.",
-          "Learning to fail fast and pivot."
+          "Evaluated cross-platform desktop development options.",
+          "Explored database design approaches and iterated through multiple schema revisions.",
+          "Identified technical risks and assumptions early in the project lifecycle.",
+          "Established an approach for rapid experimentation and validation.",
+          "Key Learning: Early design decisions have long-term consequences; investing time in research reduced future rework."
         ]
       },
       {
         period: "Update 3",
-        title: "Getting Our Hands Dirty",
+        title: "Proof of Concepts & Early Challenges",
         type: "challenge",
-        content: "We stopped talking and started coding. We spun up GitHub repos, scraped together every free tier and student offer we could find, and built tiny throwaway apps to test our theories. But early load tests revealed terrifying concurrency issues.",
+        content: "The team moved from planning to execution by creating proof-of-concept applications and evaluating different technologies. Initial load testing exposed concurrency and scalability concerns that required further architectural investigation.",
         details: [
-          "Scrappy beginnings: Surviving entirely on free tiers, student packs, and sheer willpower.",
-          "The demo phase: Building small throwaway apps to test and compare tech stacks.",
-          "The first scare: Initial stress tests exposed deep threading and concurrency flaws. Our hearts sank when the servers buckled."
+          "Built multiple prototypes to validate technical decisions.",
+          "Leveraged free-tier services and developer programs to accelerate experimentation.",
+          "Conducted early performance testing.",
+          "Identified threading and concurrency limitations that could impact scalability.",
+          "Key Learning: Testing assumptions early helped uncover risks before they reached production systems."
         ]
       },
       {
         period: "Update 4",
-        title: "Locking It In",
+        title: "Technology Stack Finalization",
         type: "achievement",
-        content: "After a grueling month, we made our bets. We chose Electron.js for the frontend and began the arduous process of navigating corporate infra approvals. Getting Redis and Cursor access felt like winning a small war.",
+        content: "After evaluating several options, we finalized the primary technology stack and began coordinating with infrastructure teams for required resources and approvals.",
         details: [
-          "Placing our bets: Electron.js officially became our weapon of choice for the desktop client.",
-          "Navigating the maze: Our intro to the world of infra, DevOps, and corporate approvals. Redis was finally in.",
-          "Breathing slightly easier knowing our foundational stack was locked."
+          "Selected Electron.js as the desktop framework.",
+          "Finalized core frontend and backend technologies.",
+          "Secured access to infrastructure components including Redis.",
+          "Began engaging with DevOps and platform teams for deployment planning.",
+          "Key Learning: Technology selection is only one part of the process; organizational alignment is equally important."
         ],
         docLink: {
           label: "Arch Doc: Tech Stack",
@@ -83,13 +90,15 @@ const placeholderData: MonthGroup[] = [
     entries: [
       {
         period: "Update 5",
-        title: "Architecting the Dream",
+        title: "Architecture Consolidation",
         type: "experience",
-        content: "The architectural debates were intense. Frontend, backend, database—everyone had strong opinions. We pushed boundaries, becoming the first team to implement Server-Sent Events (SSE). It was exhausting but exhilarating.",
+        content: "The team focused on refining application architecture and resolving open design questions. Several iterations were required before arriving at a scalable and maintainable structure.",
         details: [
-          "Passionate debates: Architecture discussions that went back and forth for hours. We cared so much about getting it right.",
-          "Pioneering SSE: Taking a risk as the first team to implement Server-Sent Events for real-time communication.",
-          "Finding clarity: A Cursor-assisted database redesign finally cleared the fog from our earlier, flawed schemas."
+          "Conducted architecture reviews across frontend, backend, and database layers.",
+          "Implemented Server-Sent Events (SSE) for real-time communication.",
+          "Redesigned database structures to address limitations identified during earlier phases.",
+          "Established clearer ownership boundaries between services.",
+          "Key Learning: Architecture discussions can be time-consuming, but they significantly reduce complexity later."
         ],
         docLink: {
           label: "Arch Doc: Backend Architecture",
@@ -98,13 +107,15 @@ const placeholderData: MonthGroup[] = [
       },
       {
         period: "Update 6",
-        title: "Tearing Down to Build Up",
+        title: "Strategic Refactoring",
         type: "achievement",
-        content: "We realized our backend wasn't going to hold up, so we made the painful choice to refactor early. Meanwhile, we drew the hard lines on what lived locally versus what lived in the cloud. It felt like open-heart surgery on our young codebase.",
+        content: "As development progressed, we recognized that portions of the backend would not scale effectively. Rather than carrying technical debt forward, we invested time in a major refactoring effort.",
         details: [
-          "The great divide: Finally settling the agonizing debate over local vs. cloud storage.",
-          "The painful refactor: Stepping back to rewrite major backend components for the sake of future scalability.",
-          "Trust the process: It felt like moving backwards, but we knew it was necessary."
+          "Reworked backend components to improve maintainability.",
+          "Defined clear boundaries between local and cloud-hosted data.",
+          "Improved scalability and reliability foundations.",
+          "Reduced future operational risk.",
+          "Key Learning: Early refactoring is less expensive than large-scale redesign after release."
         ],
         docLink: {
           label: "Arch Doc: Local Persistence (SQLite)",
@@ -113,26 +124,28 @@ const placeholderData: MonthGroup[] = [
       },
       {
         period: "Update 7",
-        title: "Meeting the Machine & The First Prototype",
+        title: "First Working Prototype",
         type: "achievement",
-        content: "Welcome to enterprise development. We hit a wall of approvals and DevOps setups, and said a bittersweet goodbye to Satvik as he moved to Noida. Despite this, we slapped together our Phase 1 UI and basic backend alignment, creating our first working prototype. Showing it to the HR team and Shweta was terrifying, but seeing the app actually breathe was magical.",
+        content: "The first end-to-end prototype successfully demonstrated core workflows and validated the overall direction of the product.",
         details: [
-          "The waiting game: DevOps setup began (GitLab, RDS), but we were stalled by pending approvals from leadership.",
-          "A glimmer of hope: A soft sign-off from Infosec meant our SSO approach wasn't completely crazy.",
-          "Team changes: Satvik relocated to the Noida office, forcing us to adapt our daily rhythms.",
-          "It’s alive!: Building the Phase 1 UI and seeing end-to-end data flow.",
-          "The big reveal: Nervous heartbeats as we demoed the prototype to the HR team and Shweta."
+          "Completed Phase 1 UI implementation.",
+          "Established frontend-backend integration.",
+          "Began infrastructure setup including GitLab pipelines and cloud resources.",
+          "Conducted the first stakeholder demonstrations.",
+          "Key Learning: Even a simple working prototype creates valuable feedback opportunities."
         ]
       },
       {
         period: "Update 8",
-        title: "A Tough Pill to Swallow",
+        title: "Product Feedback & Iteration",
         type: "challenge",
-        content: "The core functionality worked, but the UI... didn't land. The internal feedback was brutally honest and mostly negative. It hurt our pride, but deep down, we knew they were right. It was time to swallow our egos and do better.",
+        content: "Initial stakeholder feedback highlighted significant usability and design improvements needed before broader adoption.",
         details: [
-          "The harsh reality: Core features worked, but the UI feedback was a wake-up call.",
-          "A mountain of feedback: Internal reviews left us with a steep climb of improvements to make.",
-          "Backend groans: Stability tests in the new environment surfaced old ghosts of concurrency issues."
+          "Gathered extensive internal feedback.",
+          "Identified UI and UX improvement opportunities.",
+          "Reassessed design priorities.",
+          "Continued addressing backend stability concerns discovered during testing.",
+          "Key Learning: Constructive feedback often provides the clearest roadmap for improvement."
         ]
       }
     ]
@@ -142,23 +155,25 @@ const placeholderData: MonthGroup[] = [
     entries: [
       {
         period: "Update 9",
-        title: "Testing & Pre-Release Build",
+        title: "Quality & Release Preparation",
         type: "experience",
-        content: "We were gearing up for our first build release, which meant pencils down on new features. We kicked off an intensive testing sprint, obsessively hunting down bugs.",
+        content: "The focus shifted toward stabilization and testing as the team prepared the first release candidate.",
         details: [
-          "Pre-release jitters: Testing every corner of the app as we prepared to hand over our first build.",
-          "Squashing bugs: A frantic sprint to fix the most glaring issues before the deadline.",
-          "Feature freeze: No more new ideas, just making sure the current ones actually worked."
+          "Initiated a structured testing cycle.",
+          "Resolved critical defects and usability issues.",
+          "Implemented a feature freeze to prioritize stability.",
+          "Improved release readiness."
         ]
       },
       {
         period: "Update 10",
-        title: "Piping the Data",
+        title: "Real-Time Communication",
         type: "experience",
-        content: "With testing rolling out, we doubled down on our real-time data flows. Server-client communication was officially born via SSE, and the groundwork for our deployment pipelines started to take shape.",
+        content: "The real-time communication framework became operational, establishing the foundation for live updates throughout the application.",
         details: [
-          "Nailing the connection: Server-client communication finally clicked into place via Server-Sent Events (SSE).",
-          "Pipeline groundwork: We started early integration of devops components, laying the tracks for our eventual deployments."
+          "Successfully deployed SSE-based communication flows.",
+          "Improved synchronization between client and server.",
+          "Began building deployment automation foundations."
         ],
         docLink: {
           label: "Arch Doc: Data Flow",
@@ -167,24 +182,26 @@ const placeholderData: MonthGroup[] = [
       },
       {
         period: "Update 11",
-        title: "Finding Our Guardian Angels",
+        title: "Design & Security Collaboration",
         type: "insight",
-        content: "Drowning in UI debt, we reached out for help. Aditya from the design team became our unsung hero, squeezing us in whenever he had a free moment. Simultaneously, we triggered the Eye of Sauron (Infosec) by asking for MS Graph APIs.",
+        content: "External collaboration became increasingly important as design refinements and security reviews accelerated.",
         details: [
-          "The UI Savior: Aditya from design gracefully stepped in to help us out of our UX mess.",
-          "Under the microscope: Asking for MS Graph APIs initiated a massive, grueling security review.",
-          "The endless ping-pong: A frustrating but necessary back-and-forth with the security teams."
+          "Worked closely with design stakeholders to improve user experience.",
+          "Initiated Microsoft Graph API security reviews.",
+          "Addressed compliance and security requirements.",
+          "Established stronger collaboration with security teams."
         ]
       },
       {
         period: "Update 12",
-        title: "The Waiting Game",
+        title: "Infrastructure Readiness",
         type: "experience",
-        content: "We hit a strange milestone: almost all our key features were done. Everything looked great on the frontend. But we were chained to the ground by lingering environment setups and endless DevOps discussions. We had a Ferrari, but we were waiting for the road to be built.",
+        content: "Core functionality was largely complete, shifting attention toward deployment environments and operational readiness.",
         details: [
-          "The feature plateau: A bittersweet moment—core features were done, but we were blocked by environment setups.",
-          "Polishing the chrome: Spending our nervous energy refining the UI while waiting on approvals.",
-          "The DevOps dance: Endless coordination and alignment meetings to get the infra ready."
+          "Finalized most major features.",
+          "Continued UI refinement and usability improvements.",
+          "Coordinated environment provisioning and deployment planning.",
+          "Prepared for broader testing activities."
         ]
       }
     ]
@@ -194,35 +211,38 @@ const placeholderData: MonthGroup[] = [
     entries: [
       {
         period: "Update 13",
-        title: "Lost in Translation",
+        title: "Environment Alignment Challenges",
         type: "challenge",
-        content: "If the last update was a waiting game, this one was a game of telephone. Communication delays between us and DevOps caused endless friction. They made changes, we made changes, things broke. We desperately tried to find rhythm while designing our notification system.",
+        content: "Coordination challenges between development and infrastructure teams created delays and highlighted the importance of tighter communication processes.",
         details: [
-          "Communication breakdown: Misalignments and delays as we tried to sync our code with DevOps' changes.",
-          "Frustration mounts: Struggling with GitLab configuration issues that slowed us to a crawl.",
-          "A creative escape: Pouring our frustration into designing a robust, cross-platform notification scheduling system."
+          "Addressed deployment configuration inconsistencies.",
+          "Resolved GitLab pipeline integration issues.",
+          "Designed the application's notification architecture.",
+          "Improved cross-team collaboration practices."
         ]
       },
       {
         period: "Update 14",
-        title: "Smoothing the Rough Edges",
+        title: "Platform Stabilization",
         type: "experience",
-        content: "Slowly, painfully, the chaotic pipelines started to solidify. We finally got permissions sorted and environments consistent. On the frontend, getting notifications to behave perfectly across Mac, Windows, and Linux felt like wrestling a three-headed dog.",
+        content: "Deployment environments became increasingly stable while cross-platform functionality matured.",
         details: [
-          "Calming the storm: Deployment pipelines finally started behaving predictably.",
-          "The OS puzzle: Taming the wild beasts of Windows, macOS, and Linux native notifications.",
-          "Finding our footing: The infrastructure finally felt like something we could stand on."
+          "Standardized deployment workflows.",
+          "Improved consistency across environments.",
+          "Enhanced native notification support for Windows, macOS, and Linux.",
+          "Reduced platform-specific issues."
         ]
       },
       {
         period: "Update 15",
-        title: "Fortifying the Castle",
+        title: "Security Hardening",
         type: "insight",
-        content: "The security reviews raged on, forcing us to harden every inch of our backend. We matched that intensity on the frontend by building 'lockdown' features and persistent alerts. The app was no longer just a tool; it was becoming a fortress.",
+        content: "Security reviews drove substantial improvements in application resilience and operational safeguards.",
         details: [
-          "Security by fire: The relentless Graph API review forced us to build an incredibly resilient backend.",
-          "Lockdown mode: Implementing persistent alerts and screen takeovers that commanded the user's attention.",
-          "A sense of security: The system was finally becoming stable under immense scrutiny."
+          "Strengthened backend security controls.",
+          "Implemented persistent alerting and attention-grabbing notification mechanisms.",
+          "Improved system reliability under security review.",
+          "Completed multiple compliance-driven enhancements."
         ],
         docLink: {
           label: "Arch Doc: Backend Security & Stability",
@@ -231,13 +251,14 @@ const placeholderData: MonthGroup[] = [
       },
       {
         period: "Update 16",
-        title: "The Clouds Part",
+        title: "Operational Stability Achieved",
         type: "achievement",
-        content: "Finally, a breakthrough. The endless feedback loops with DevOps and Security finally closed. The infrastructure held firm. Even Linux, our most stubborn OS child, finally played nice with our notifications. For the first time, we could breathe.",
+        content: "After several months of infrastructure and security work, the platform reached a significantly higher level of operational stability.",
         details: [
-          "Closing the loops: Surmounting the mountain of DevOps and InfoSec feedback.",
-          "Taming the Penguin: Finally fixing the last, stubborn OS quirks on Linux.",
-          "A quiet victory: The overwhelming sense of relief as the foundational instability melted away."
+          "Closed outstanding security review items.",
+          "Resolved Linux-specific platform challenges.",
+          "Improved deployment confidence.",
+          "Reduced operational uncertainty."
         ]
       }
     ]
@@ -247,46 +268,50 @@ const placeholderData: MonthGroup[] = [
     entries: [
       {
         period: "Update 17",
-        title: "The Relentless March",
+        title: "Continuous Delivery Momentum",
         type: "experience",
-        content: "We refused to be slowed down by the final, dragging stages of the Graph API review. We put our heads down and kept delivering. We pushed out a whole new Labeling system. The momentum was intoxicating; nothing could stop us from building Ribbit.",
+        content: "Feature development continued despite ongoing compliance activities.",
         details: [
-          "Unstoppable momentum: Delivering regular features despite crushing administrative overhead.",
-          "Organizing the chaos: Shipping a complex Labeling system across the full stack.",
-          "The finish line in sight: Wrapping up the very last remnants of the grueling security compliance checks."
+          "Delivered a new labeling system.",
+          "Maintained steady release velocity.",
+          "Completed remaining security compliance activities.",
+          "Improved data organization workflows."
         ]
       },
       {
         period: "Update 18",
-        title: "Bringing People Together",
+        title: "Collaboration Features",
         type: "achievement",
-        content: "Ribbit was evolving from a single-user tool into a true collaborative platform. Building the Groups system challenged us to think deeply about workflows and UI. Behind the scenes, the deployment flow finally became a boring, predictable routine—which is exactly what you want.",
+        content: "Ribbit evolved from an individual productivity tool into a collaborative platform.",
         details: [
-          "The social fabric: Designing and shipping complex Group workflows and user interfaces.",
-          "Boring is beautiful: Achieving a production-ready, flawlessly consistent deployment pipeline.",
-          "A maturing application: We were no longer building a prototype; we were building an enterprise tool."
+          "Introduced Groups functionality.",
+          "Designed collaborative workflows and permissions.",
+          "Matured deployment processes into repeatable routines.",
+          "Increased overall product readiness."
         ]
       },
       {
         period: "Update 19",
-        title: "The Final Stamps",
+        title: "Validation & Approval",
         type: "experience",
-        content: "We tackled the nerve-wracking complexity of group privacy and access controls. But the real triumph of the period was hearing those magic words: 'Approved.' Key stakeholders gave their final validations, and our turbulent backend was officially deemed 'stable.'",
+        content: "Stakeholder reviews concluded successfully, validating both product direction and technical implementation.",
         details: [
-          "The privacy maze: Carefully engineering foolproof access controls for our new Groups feature.",
-          "The 'Approved' stamp: Surpassing the final, massive hurdles of stakeholder validation.",
-          "A solid foundation: The backend, after months of chaos, was finally at peace."
+          "Implemented group privacy and access controls.",
+          "Received key stakeholder approvals.",
+          "Achieved backend stability objectives.",
+          "Completed major validation milestones."
         ]
       },
       {
         period: "Update 20",
-        title: "Polishing the Diamond",
+        title: "Final Feature Expansion",
         type: "insight",
-        content: "With everything stable, we added the cherry on top: a dynamic form builder. While the frontend team ran wild with question types and UIs, the backend team operated like janitors, cleaning up edge cases and polishing the infrastructure until it shone.",
+        content: "With the platform stabilized, the team focused on enhancing flexibility and reducing technical debt.",
         details: [
-          "The creative sprint: Building a dynamic, multi-question form builder to cap off our feature set.",
-          "The deep clean: Eradicating edge cases and sweeping up technical debt in the backend.",
-          "Ready for the big leagues: The system was completely primed for real-world product integration."
+          "Delivered a dynamic form builder.",
+          "Resolved remaining edge cases.",
+          "Improved infrastructure reliability.",
+          "Prepared the platform for broader integration scenarios."
         ],
         docLink: {
           label: "Arch Doc: Infrastructure Resilience",
@@ -300,24 +325,26 @@ const placeholderData: MonthGroup[] = [
     entries: [
       {
         period: "Update 21",
-        title: "Need for Speed",
+        title: "Internal Productivity Improvements",
         type: "achievement",
-        content: "We realized our testing cycles were too slow. So, we stopped building for the users for a moment, and built for ourselves. Creating 'signal cloning' was a game-changer; suddenly, what took minutes of manual setup took seconds. We were flying.",
+        content: "The team invested in internal tooling to accelerate testing and development workflows.",
         details: [
-          "Sharpening our tools: Halting feature work to build internal tools that dramatically sped up our workflow.",
-          "The cloning breakthrough: Implementing full-stack data cloning to bypass agonizing manual test setups.",
-          "The power of iteration: Feeling the immediate rush of moving twice as fast."
+          "Developed signal cloning capabilities.",
+          "Reduced manual testing setup effort.",
+          "Improved iteration speed.",
+          "Increased engineering efficiency."
         ]
       },
       {
         period: "Update 22",
-        title: "The Launchpad",
+        title: "Release Readiness",
         type: "experience",
-        content: "This is it. The final stretch. We stared down the terrifying reality of auto-updates across Mac, Windows, and Linux. The release pipelines are humming, the final coordination is happening, and we're standing on the precipice of v1.0. We are exhausted, but we've never been prouder.",
+        content: "Attention shifted toward release orchestration, deployment automation, and application update mechanisms.",
         details: [
-          "The Auto-Update beast: Wrestling with the immense complexity of seamless cross-platform app updates.",
-          "All systems go: The backend and frontend aligning perfectly for the final release pipeline orchestration.",
-          "The eve of launch: A profound sense of exhaustion mixed with the undeniable thrill of seeing our creation ready for the world."
+          "Implemented cross-platform auto-update workflows.",
+          "Finalized release pipelines.",
+          "Completed final integration testing.",
+          "Prepared for version 1.0 launch."
         ],
         docLink: {
           label: "Arch Doc: Auto-Update",
@@ -326,13 +353,15 @@ const placeholderData: MonthGroup[] = [
       },
       {
         period: "Update 23",
-        title: "Compromise & Growth",
+        title: "Architecture Adaptation",
         type: "insight",
-        content: "The latest development: A humbling time of learning to compromise. We realized our 'ideal' architecture clashed with what the DevOps team was used to supporting. We moved from EC2 to EKS, then to ECS. It was a masterclass in flexibility.",
+        content: "As deployment planning matured, architectural decisions evolved to better align with operational realities and support models.",
         details: [
-          "The reality check: Re-iterating our architecture to match DevOps realities, bouncing from EC2 to EKS to ECS.",
-          "Bridging the gap: Both our team and the infra team had to bend and learn from each other.",
-          "Adapting fast: It was all new to the team, so they had to adjust at few places and we had to adjust at some."
+          "Evaluated multiple hosting strategies including EC2, EKS, and ECS.",
+          "Adapted architecture based on infrastructure team feedback.",
+          "Improved collaboration between development and operations teams.",
+          "Balanced ideal technical designs with practical operational requirements.",
+          "Key Learning: Successful enterprise software requires adaptability as much as technical excellence."
         ],
         docLink: {
           label: "Arch Doc: Infrastructure Resilience",
